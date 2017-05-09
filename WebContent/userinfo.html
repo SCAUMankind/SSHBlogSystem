@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css">
+</head>
+<body>
+	<div id="page">
+		<img src="image/login/bg7.jpg" alt="">
+		<div class="overlay"></div>
+	</div>
+	<div class="container">
+		<div class="container-content">
+			<div id="register" class="row">
+				<div class="col-md-4 col-md-push-4">
+					<div class="form-wrap">
+									<div class="tab">
+										<div class="tab-content">
+											<div class="tab-content-inner active" >
+												<h3 class="cursive-font text-center">详细信息(选填)</h3>
+												<form action="userinfo_createUserInfo" class="form-horizontal" id="info-form">
+													<div class="row form-group ">
+														<div class="col-md-12">
+															<label for="sex" class="control-label col-md-4">性&ensp;别</label>
+															<div class="col-md-8">
+																<label class="radio-inline">
+																  <input type="radio" name="sex" id="male" value="male"> 男
+																</label>
+																<label class="radio-inline">
+																  <input type="radio" name="sex" id="female" value="female"> 女
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="row form-group " id="datetimepicker">
+														<label for="birthday" class="control-label col-md-4">生&ensp;日</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control form_date"    id="date" name="date">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="job" class="control-label col-md-4">职&ensp;位</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="职位" id="job" name="job">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="place" class="control-label col-md-4">所&emsp;在&emsp;地</label>
+														<div class="col-md-8" data-toggle="distpicker">
+															<select class="select" name="province"></select><!-- 省 -->
+															  <select class="select" name="city"></select><!-- 市 -->
+															  <select class="select" name="area"></select><!-- 区 -->
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="post" class="control-label col-md-4">邮&emsp;箱</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="邮箱" name="post" >
+														</div>
+													</div>
+													<div class="row form-group button-group">
+														<div class="col-md-6 col-md-push-3">
+															<input type="submit" class="btn btn-primary btn-block" value="进入系统" id="enter">
+														</div>
+													</div>
+												</form>	
+											</div>
+										</div>
+									</div>
+								</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+	<script src="js/distpicker.data.min.js"></script>
+	<script src="js/distpicker.min.js"></script>
+	<script src="js/zh_CN.js"></script>	
+	<script src="js/bootstrapValidator.min.js"></script>
+	<script type="text/javascript">  
+		$('.form_date').datetimepicker({
+        //language:  'fr',
+        format: 'yyyy-mm-dd',
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$(function(){
+		$('#info-form').bootstrapValidator({
+				message: 'This value is not valid',
+				fields:{
+					post:{
+						validators:{
+							emailAddress:{
+								message:'请输入合法的邮箱格式'
+							}
+						}
+					},
+					date:{
+						validators:{
+							date:{
+								format:'YYYY-MM-DD',
+								mssage:"请输入正确的格式"
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e) {
+					e.preventDefault();
+					$.ajax({
+						type:"GET",
+						url:"userinfo_createUserInfo",
+						data:$('#info-form').serialize(),
+						success:function(){
+							location.href="main.html";
+						}
+					})
+				});
+	});
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >  
+  
+<hibernate-mapping package="com.blog.beans">  
+    <class name="Label" table="label">  
+        <id name="labelId" column="label_id">  
+            <generator class="native"></generator>  
+        </id>  
+        <property name="labelTitle" column="label_title" type="java.lang.String"  />
+        <property name="userId" column="user_id" type="java.lang.Integer"  /> 
+    </class>  
+</hibernate-mapping>  

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >  
+  
+<hibernate-mapping package="com.blog.beans">  
+    <class name="Comment" table="comment">  
+        <id name="id" column="id">  
+            <generator class="native"></generator>  
+        </id>  
+        <property name="fatherId" column="father_id" type="java.lang.Integer"  />
+        <property name="blogId" column="blog_id" type="java.lang.Integer"  />
+        <property name="userId" column="user_id" type="java.lang.Integer"  />
+        <property name="date" column="date" type="java.util.Date"  />
+        <property name="content" column="content" type="java.lang.String"  />
+         <property name="haveReply" column="have_reply" type="java.lang.Boolean"  />
+    </class>  
+</hibernate-mapping>  

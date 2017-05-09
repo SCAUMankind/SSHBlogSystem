@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css">
+</head>
+<body>
+	<div id="page">
+		<img src="image/login/bg7.jpg" alt="">
+		<div class="overlay"></div>
+	</div>
+	<div class="container">
+		<div class="container-content">
+			<div id="register" class="row">
+				<div class="col-md-4 col-md-push-4">
+					<div class="form-wrap">
+									<div class="tab">
+										<div class="tab-content">
+											<div class="tab-content-inner active" >
+												<h3 class="cursive-font text-center">用户注册</h3>
+												<form action="register_create" class="form-horizontal" id="register-form">
+													<div class="form-group">
+														<label for="account" class="control-label col-md-4">账&ensp;号</label>
+														<div class="col-md-8 ">
+															<input type="text"  class="form-control"  placeholder="账号" name="account" id="account">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="password" class="control-label col-md-4">密&ensp;码</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="请输入密码" name="password" >
+														</div>
+													</div>
+													<div class="row form-group">
+													<label for="password" class="control-label col-md-4">确认密码</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="请再次输入密码" name="confirmPassword"> 
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="username" class="control-label col-md-4">昵&ensp;称</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="请输入昵称" name="username" >
+														</div>
+													</div>
+													<div class="row form-group button-group">
+														<div class="col-md-6">
+															<a type="button" class="btn btn-primary btn-block" href="index.html">返回</a>
+														</div>
+														<div class="col-md-6">
+															<input type="submit" class="btn btn-primary btn-block" value="下一步" id="next">
+														</div>
+													</div>
+												</form>	
+											</div>
+										</div>
+									</div>
+								</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrapValidator.min.js"></script>
+	<script src="js/language/zh_CN.js"></script>
+	<script>
+		$(function(){
+			$('#register-form').bootstrapValidator({
+				message: 'This value is not valid',
+				fields:{
+					account:{
+						validators:{
+							notEmpty:{
+								message: '账号不能为空'
+							},
+							remote:{
+								url:'register_existCheck',
+								message: '用户已存在',
+								delay :  5000,
+								type: 'GET',
+								dataType: 'json'
+							}
+						}
+					},
+					password:{
+						validators:{
+							notEmpty:{
+								message: '密码不能为空'
+							}
+						}
+					},
+					confirmPassword:{
+						validators:{
+							notEmpty:{
+								message: '密码不能为空'
+							},
+							identical:{
+								field:'password',
+								message:'前后密码不一致'
+							}
+						}
+					},
+					username:{
+						validators:{
+							notEmpty:{
+								message: '用户名不能为空'
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e) {
+					e.preventDefault();
+					$.ajax({
+						type:"GET",
+						url:"register_create",
+						data:$('#register-form').serialize(),
+						success:function(){
+							location.href="userinfo.html";
+						}
+					})
+				});
+		});
+	</script>
+</body>
+</html>

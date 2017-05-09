@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd" >
+       <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+	    <property name="driverClass" value="com.mysql.jdbc.Driver" />  
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mankind?useUnicode=true&amp;characterEncoding=UTF-8" />  
+	    <property name="user" value="root" />  
+	    <property name="password" value="123456" />  
+		</bean>  
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
+		     <property name="dataSource" ref="dataSource" />  
+		     <property name="configLocation" value="classpath:hibernate.cfg.xml" /> <!-- 加载hibernate配置文件 -->  
+		</bean>  
+       	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
+     		<property name="sessionFactory" ref="sessionFactory" />  
+		</bean>  
+		<tx:advice id="advice" transaction-manager="transactionManager">  
+		    <tx:attributes>  
+		        <tx:method name="save*" propagation="REQUIRED"/>  
+		        <tx:method name="update*" propagation="REQUIRED"/>  
+		        <tx:method name="delete*" propagation="REQUIRED"/>  
+		        <tx:method name="get*" propagation="REQUIRED"/> 
+		        <tx:method name="load*" propagation="REQUIRED"/> 
+		        <tx:method name="*" propagation="SUPPORTS"/>  
+		    </tx:attributes>  
+		</tx:advice>  
+		<aop:config>  
+	    <!-- 配置哪些包的类要切入事务 -->  
+	    <aop:pointcut id="pointcut" expression="execution(* com.blog.serviceimpl.*.*(..))" />  
+	    <aop:advisor advice-ref="advice" pointcut-ref="pointcut"/><!-- 连接了上面的advice和上面的pointcut -->  
+	    <!-- aop:pointcut要写在aop:advisor上面，否则会报错 -->  
+	 </aop:config>  
+        <!--Dao层-->
+	 	<bean id="userDao" class="com.blog.dao.UserDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="userInfoDao" class="com.blog.dao.UserInfoDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="placeDao" class="com.blog.dao.PlaceDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="blogDao" class="com.blog.dao.BlogDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="fansDao" class="com.blog.dao.FansDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="labelDao" class="com.blog.dao.LabelDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="blogLabelLinkDao" class="com.blog.dao.BlogLabelLinkDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+    	<bean id="commentDao" class="com.blog.dao.CommentDao">  
+	        <property name="sessionFactory" ref="sessionFactory" />  
+    	</bean>
+        <bean id="date" class="java.util.Date" />
+        <!--Service层-->
+        <bean id="baseService" class="com.blog.serviceimpl.BaseServiceImpl" lazy-init="true">  
+     		<property name="sessionFactory" ref="sessionFactory" />  
+		</bean>  
+		<bean id="userService" class="com.blog.serviceimpl.UserServiceImpl" parent="baseService">  
+			<property name="userDao" ref="userDao" /> 
+		</bean>
+		<bean id="placeService" class="com.blog.serviceimpl.PlaceServiceImpl" parent="baseService">  
+			<property name="placeDao" ref="placeDao" /> 
+		</bean>
+		<bean id="userInfoService" class="com.blog.serviceimpl.UserInfoServiceImpl" parent="baseService">  
+			<property name="userInfoDao" ref="userInfoDao" /> 
+		</bean>
+		<bean id="blogService" class="com.blog.serviceimpl.BlogServiceImpl" parent="baseService">  
+			<property name="blogDao" ref="blogDao" /> 
+		</bean>
+		<bean id="fansService" class="com.blog.serviceimpl.FansServiceImpl" parent="baseService">  
+			<property name="fansDao" ref="fansDao" /> 
+		</bean>
+		<bean id="labelService" class="com.blog.serviceimpl.LabelServiceImpl" parent="baseService">  
+			<property name="labelDao" ref="labelDao" /> 
+			<property name="blogLabelLinkDao" ref="blogLabelLinkDao" /> 
+		</bean>
+		<bean id="blogLabelLinkService" class="com.blog.serviceimpl.BlogLabelLinkServiceImpl" parent="baseService">  
+			<property name="blogLabelLinkDao" ref="blogLabelLinkDao" /> 
+		</bean>
+		<bean id="commentService" class="com.blog.serviceimpl.CommentServiceImpl" parent="baseService">  
+			<property name="commentDao" ref="commentDao" /> 
+		</bean>
+		<!--Action层 -->
+		<bean id="UserAction" class="com.blog.action.UserAction" scope="prototype">  
+	        <property name="userService" ref="userService" />
+	        <property name="userInfoService" ref="userInfoService" />
+        </bean>
+        <bean id="RegisterAction" class="com.blog.action.RegisterAction" scope="prototype">  
+	        <property name="userService" ref="userService" />
+	        <property name="userInfoService" ref="userInfoService" />
+        </bean>
+		<bean id="UserInfoAction" class="com.blog.action.UserInfoAction" scope="prototype">  
+	        <property name="userInfoService" ref="userInfoService" />
+	        <property name="placeService" ref="placeService" />
+        </bean>
+        <bean id="BlogAction" class="com.blog.action.BlogAction" scope="prototype">  
+	        <property name="blogService" ref="blogService" />
+	        <property name="labelService" ref="labelService" />
+	         <property name="blogLabelLinkService" ref="blogLabelLinkService" />
+        </bean>
+        <bean id="FansAction" class="com.blog.action.FansAction" scope="prototype">  
+	        <property name="fansService" ref="fansService" />
+	        <property name="userInfoService" ref="userInfoService" />
+        </bean>
+        <bean id="LabelAction" class="com.blog.action.LabelAction" scope="prototype">  
+	        <property name="labelService" ref="labelService" />
+	        <property name="blogLabelLinkService" ref="blogLabelLinkService" />
+        </bean>
+        <bean id="uploadAction" class="com.blog.action.UploadAction" scope="prototype">
+        	<property name="userInfoService" ref="userInfoService" />
+        </bean>
+        <bean id="CommentAction" class="com.blog.action.CommentAction" scope="prototype">
+        	<property name="commentService" ref="commentService" />
+        	<property name="userInfoService" ref="userInfoService" />
+        </bean>
+    </beans>  

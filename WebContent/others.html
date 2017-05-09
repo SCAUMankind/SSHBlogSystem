@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+</head>
+<body id="body">
+	<header class="app-header navbar" id="header">
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav navbar-nav hidden-md-down">
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+            </li>
+
+            <li class="nav-item px-1">
+                <a class="nav-link" href="main.html">首页</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="blog.html">博客管理</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#" name="randomGo">随便逛逛</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link"  href="manager.html" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img name="personal-head-image" src="image/main/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                    <span >admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler aside-menu-toggler" href="index.html">退出</a>
+            </li>
+
+        </ul>
+    </header>
+	<div class="container top-container" id="main-content">
+		<div class="row clearfix">
+			<div class="col-md-4 column text-center" id="side">
+			    <!--img-circle -->
+			    <div id="side-content" class="text-center">
+			    	<div id="side-content-top">
+			    		<div class="head" id="head-image-box">
+							<img name="head-image" src="" class="img-circle" style="width:140px;height:140px;margin-top:3rem;"/>
+							<h2 id="userName">
+								个人昵称
+							</h2>
+			    		</div>
+			    		<div class="head-message">
+							<ul class="row text-left">
+								<li >粉丝量: <span id="fansNum"></span></li>
+								<li >访问量: <span id="PV"></span></li>
+								<li >文章量: <span id="blogNum"></span></li>
+								<li >最近登录时间: <span id="recentLogin"></span></li>
+							</ul>
+			    		</div>
+			    	</div>
+			    </div>
+					<div id="side-content-middle">
+			    		<div class="sidebar-title">
+			    		<span>文章分类</span>
+			    		</div>
+			    		<div class="sidebar-content">
+			    		<ul id="label-list">
+			    			<li><a href="">呵呵(0)</a></li>
+			    			<li><a href="">呵呵(3)</a></li>
+			    			<li><a href="">大神(2)</a></li>
+			    		</ul>
+			    		</div>
+			    	</div>	
+			    
+			</div>
+			<div class="col-md-8 column " id="right-part">
+				<div id="right-content" class="row">
+					<h3 class="roll-title">每日精彩推荐</h3>		
+					<div class="carousel slide" id="carousel-780835">
+						<ol class="carousel-indicators">
+							<li data-slide-to="0" data-target="#carousel-780835">
+							</li>
+							<li data-slide-to="1" data-target="#carousel-780835">
+							</li>
+							<li data-slide-to="2" data-target="#carousel-780835" class="active">
+							</li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="item">
+								<img alt="" src="image/pass6.jpg" />
+								<div class="carousel-caption">
+									<h4>
+										First Thumbnail label
+									</h4>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+							</div>
+							<div class="item">
+								<img alt="" src="image/pass7.jpg" />
+								<div class="carousel-caption">
+									<h4>
+										Second Thumbnail label
+									</h4>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+							</div>
+							<div class="item active">
+								<img alt="" src="image/pass4.jpg" />
+								<div class="carousel-caption">
+									<h4>
+										Third Thumbnail label
+									</h4>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+							</div>
+						</div> <a class="left carousel-control" href="#carousel-780835" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-780835" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+					</div>
+					<div id="blog-wrap">
+					</div>
+					
+					<div class="text-center">	
+						<ul id="example"></ul>
+					</div>
+	
+				</div>
+
+				</div>
+				
+		</div>
+	</div>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	<script type='text/javascript'>
+		$("a[name='randomGo']").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"userinfo_getUserIdRandomly",
+				dataType:"json",
+				success:function(data){
+					if(data.userId==0){
+						location.href=location.href;
+					}else{
+						location.href="others.html?userId="+data.userId;
+					}
+				}
+			})
+		})
+		function GetQueryString(name)
+		{
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return "null";
+		}
+		function getTotalPages(){
+				$.ajax({
+					type:"GET",
+					dataType:"json",
+					url:'blog_getTotalPages?userId='+GetQueryString("userId"),
+					success:function(data){
+						var options = {
+							currentPage: 1,
+					        totalPages: data.totalPages,
+					        numberOfPages:5,
+					        bootstrapMajorVersion:3,
+					        useBootstrapTooltip:true,
+					        itemTexts:function(type,page, current){//文字翻译
+					            switch (type) {
+					                case "first":
+					                    return "首页";
+					                case "prev":
+					                    return "上一页";
+					                case "next":
+					                    return "下一页";
+					                case "last":
+					                    return "尾页";
+					                case "page":
+					                    return page;
+					            }
+					        },
+					        onPageClicked: function (event, originalEvent, type, page) {
+		                        $.ajax({
+		                        	type: "GET",
+		                        	dataType:"json",  
+		                            url:'blog_getBlog?Page='+page+'&userId='+GetQueryString("userId"), //点击分页提交当前页码
+		                            success:function(data){
+	                                  size = data.showSize;  
+	                                  list = data.blogList;  
+		                              $("#blog-wrap").empty();
+		                              if (list != null) {  
+	                                    $.each( list, function(index, blog){    
+	                                        var html = '<div class="blog"><h2>'+//  
+	                                        	blog.title +//
+	                                        	'</h2><p>' +//
+	                                        	blog.text +'</p><p class="text-right">'+
+	                                        	'<span>创建时间:'+blog.date+'</span>&nbsp;&nbsp;&nbsp;'+
+	                                        	'<span>阅读量('+blog.blogPV+')</span>&nbsp;&nbsp;&nbsp;'+
+	                                        	'<a class="btn" href="article.html?blogId='+blog.blogId+'&userId='+GetQueryString("userId")+
+	                                        	'">阅读博客 »</a></p>';
+	                                            $("#blog-wrap").append(html);  
+	                                        });  
+	                                    }
+	                                    else{  
+	                                        $("#blog-wrap").append('没有找到相应数据');  
+	                                    } 
+		                            }
+		                        })
+						}
+					}
+					$('#example').bootstrapPaginator(options);
+					$($('#example').children().get(0)).children().click();
+					//模拟一次点击事件
+
+				}
+		    })
+		}
+		function getInfomation(){
+			//页主信息
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:'userinfo_getUserInfo?userId='+GetQueryString("userId"),
+				success:function(data){
+					var imageURL=data.userInfo.userImage;
+					var userName=data.userInfo.userName;
+					var PV=data.userInfo.userPV;
+					var date=data.userInfo.userRecentLoginTime;
+					date=date.split('T')[0];
+					$("#userName").text(userName);
+					$("img[name='head-image']").attr("src",imageURL);
+					$("#PV").text(PV);
+					$("#recentLogin").text(date);
+				}
+			})
+			//个人信息
+			$.ajax({
+	    		type:"GET",
+	    		dataType:"json",
+	    		url:"userinfo_getUserInfo",
+	    		success:function(data){
+	    			var userInfo=data.userInfo;
+	    			$("img[name='personal-head-image']").attr("src",userInfo.userImage);
+	    		}
+	    	})
+			var blogTotalNum;//保存博客总数
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:'blog_getBlogTotalNum?userId='+GetQueryString("userId"),
+				success:function(data){
+					var blogNum=data.blogTotalNum;
+					blogTotalNum=data.blogTotalNum;
+					$("#blogNum").text(blogNum);
+				}
+			})
+			//获取粉丝数和关注数
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:'fans_getNumber?userId='+GetQueryString("userId"),
+				success:function(data){
+					var fansNumber=data.fansNumber;
+					var noticerNumber=data.noticerNumber;
+					$("#fansNum").text(fansNumber);
+				}
+			})
+			//获取按钮
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:'fans_isFans?userId='+GetQueryString("userId"),
+				success:function(data){
+					var flag =data.flag;
+					var html='<button  type="button" class="btn btn-success btn-large" name="index">个人主页</button>&nbsp;&nbsp;&nbsp;';
+					$("#head-image-box").append(html);
+					if(flag==true)
+					{
+						html='<button  type="button" class="btn btn-success btn-large" name="cancel">取消关注</button>';
+						$("#head-image-box").append(html);
+					}
+					else
+					{
+						html='<button  type="button" class="btn btn-success btn-large" name="add">添加关注</button>';
+						$("#head-image-box").append(html);
+					}
+					//添加js功能
+					$("button[name='index']").click(function(){
+						location.href="others.html?userId="+GetQueryString("userId");
+					})
+					$("button[name='add']").click(function(){
+						$.ajax({
+							type:"get",
+							url:"fans_createNoticer?userId="+GetQueryString("userId"),
+							success:function(){
+								location.href=location.href;
+							}
+						})
+					})
+					$("button[name='cancel']").click(function(){
+						$.ajax({
+							type:"get",
+							url:"fans_deleteFans?userId="+GetQueryString("userId"),
+							success:function(){
+								location.href=location.href;
+							}
+						})
+					})
+				}
+			})
+			//获取文章分类和对应数量
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:'label_getLabelList?userId='+GetQueryString("userId"),
+				success:function(data){
+					var size=data.showSize;
+					var labelList=data.labelList;
+					var markedBlogNum=data.markedBlogNum;
+					if(size!=null)
+					{
+						$("#label-list").empty();
+						var head='<li><a name="all">全部分类('+blogTotalNum+')</a></li>';
+						$("#label-list").append(head);
+						for(var i=0;i<size;i++)
+						{
+							var html='<li><a name="label-'+labelList[i].labelId+'">'+
+							labelList[i].labelTitle+'('+markedBlogNum[i]+')'+'</a></li>';
+							$("#label-list").append(html);
+						}
+						//给添加的链接加上对应功能
+						$('a[name="all"]').click(getTotalPages);
+						$("a[name^='label-']").click(function(){
+							var labelId=$(this).attr("name").split('-')[1];
+							//var num=$(this).text().split('(')[1].split(')')[0];
+							//alert("截取的数目:"+num);
+							//显示对应标签的博客
+							//获取总数量
+							$.ajax({
+								type:"GET",
+								dataType:"json",
+								url:"blog_getBlogTotalPagesByLabel?labelId="+labelId+"&userId="+GetQueryString("userId"),
+								success:function(data){
+									if(data.totalPages!=0)
+									{
+										var options = {
+											currentPage: 1,
+									        totalPages: data.totalPages,
+									        numberOfPages:5,
+									        bootstrapMajorVersion:3,
+									        useBootstrapTooltip:true,
+									        itemTexts:function(type,page, current){//文字翻译
+									            switch (type) {
+									                case "first":
+									                    return "首页";
+									                case "prev":
+									                    return "上一页";
+									                case "next":
+									                    return "下一页";
+									                case "last":
+									                    return "尾页";
+									                case "page":
+									                    return page;
+									            }
+									        },
+									        onPageClicked: function (event, originalEvent, type, page) {
+						                        $.ajax({
+						                        	type: "GET",
+						                        	dataType:"json",  
+						                            url:'blog_getBlogListByLabel?Page='+page+'&labelId='+labelId+'&userId='+GetQueryString("userId"), //点击分页提交当前页码
+						                            success:function(data){
+					                                  size = data.showSize;  
+					                                  title=data.blogTitle;
+					                                  text=data.blogText; 
+					                                  blogId=data.blogId;
+						                              $("#blog-wrap").empty();
+						                              if (list != null) 
+						                               {
+							                              	for(var i=0;i<size;i++)
+							                              	{
+							                              		var html = '<div class="blog"><h2>'+//  
+						                                        	title[i] +//
+						                                        	'</h2><p>' +//
+						                                        	text[i] +'</p><p class="text-right"><a class="btn" href="article.html?blogId='+blogId[i]+
+						                                        	'&userId='+GetQueryString("userId")+
+						                                        	'">View details »</a></p>';
+						                                            $("#blog-wrap").append(html);  
+						                                    }
+					                                   }
+					                                    //end if
+						                            }
+						                        })
+											}
+										}
+										//添加option到
+										$('#example').bootstrapPaginator(options);
+										$($('#example').children().get(0)).children().click();		
+									}
+									else 
+									{
+										//点击没有博客的标签
+									}
+								}
+								//end success
+							})
+							//end ajax
+							//添加js功能
+						})
+						// end click
+					}
+				}
+			})
+		}
+		$(function(){
+			getTotalPages();
+			getInfomation();
+		});
+					       
+	  </script>
+</body>
+</html>

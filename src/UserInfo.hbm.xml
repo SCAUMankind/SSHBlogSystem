@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >  
+  
+<hibernate-mapping package="com.blog.beans">  
+    <class name="UserInfo" table="userinfo">  
+        <id name="userInfoId" column="userinfo_id">  
+            <generator class="native"></generator>  
+        </id>  
+        <property name="userName" column="user_name" type="java.lang.String"  />
+        <property name="sex" column="user_sex" type="java.lang.Boolean"  />
+        <property name="userBirthday" column="user_birthday" type="java.util.Date"  />
+        <property name="userJob" column="user_job" type="java.lang.String"  />
+        <property name="userIntroduction" column="user_introduction" type="java.lang.String"  />
+        <property name="userPlace" column="user_place" type="java.lang.Integer"  /> 
+        <property name="userImage" column="user_image" type="java.lang.String"  />
+        <property name="post" column="user_post" type="java.lang.String"  />
+        <property name="userId" column="user_id" type="java.lang.Integer"  />
+        <property name="userRecentLoginTime" column="user_recent_login_time" type="java.util.Date"  />
+    	<property name="userPV" column="user_PV" type="java.lang.Integer"  />
+    </class>  
+</hibernate-mapping>  

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >  
+  
+<hibernate-mapping package="com.blog.beans">  
+    <class name="Blog" table="blog">  
+        <id name="blogId" column="blog_id">  
+            <generator class="native"></generator>  
+        </id>  
+        <property name="title" column="blog_title" type="java.lang.String"  />
+        <property name="text" column="blog_text" type="java.lang.String"  />
+        <property name="visit" column="blog_visit" type="java.lang.Integer"  />
+        <property name="userId" column="user_id" type="java.lang.Integer"  /> 
+        <property name="date" column="blog_date" type="java.util.Date"  /> 
+         <property name="blogPV" column="blog_pv" type="java.lang.Integer"  />
+    </class>  
+</hibernate-mapping>  

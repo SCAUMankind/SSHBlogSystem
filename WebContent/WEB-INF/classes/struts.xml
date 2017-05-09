@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE struts PUBLIC
+            "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+            "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+    <struts>
+        <package name="blog" extends="json-default">
+            <action name="logintest" class="TestAction">
+            	<result name="success">/index.html</result>
+        	</action>
+        	<action name="user_*" class="UserAction" method="{1}">
+        		<result name="success">/main.html</result>
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="register_*" class="RegisterAction" method="{1}">
+        		<result name="success">/userinfo.html</result>
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="upload" class="uploadAction">
+        		<result name="success">/manager.html</result>
+        	</action>
+        	<action name="userinfo_*" class="UserInfoAction" method="{1}">
+        		<result name="success">/main.html</result>
+        		 <result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="blog_*" class="BlogAction"  method="{1}">
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="fans_*" class="FansAction"  method="{1}">
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="label_*" class="LabelAction"  method="{1}">
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="blogLabelLink_*" class="BlogLabelLinkAction"  method="{1}">
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        	<action name="comment_*" class="CommentAction"  method="{1}">
+        		<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				</result>
+        	</action>
+        </package>
+        
+    </struts>
