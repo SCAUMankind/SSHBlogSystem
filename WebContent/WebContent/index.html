@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/bootstrapValidator.css">
+</head>
+<body>
+	<div id="page">
+		<img src="image/login/bg7.jpg" alt="">
+		<div class="overlay"></div>
+	</div>
+	<div class="container">
+		<div class="container-content">
+			<div id="login" class="row">
+				<div class="col-md-4 col-md-push-4">
+					<div class="form-wrap">
+									<div class="tab">
+										<div class="tab-content">
+											<div class="tab-content-inner active" >
+												<h3 class="cursive-font text-center">个人博客系统</h3>
+												<form id="login-form" action="login" >
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="account">用户名</label>
+														</div>
+														<div class="col-md-12">
+															<span class="glyphicon glyphicon-user form-control-feedback small-graph"></span>
+															<input type="text" name="account" class="form-control" placeholder="输入用户名">
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="password">密码</label>
+														</div>
+														<div class="col-md-12">
+															<span class="glyphicon glyphicon-lock form-control-feedback small-graph"></span>
+															<input type="password" name="password" class="form-control"
+															placeholder="输入密码">
+														</div>
+													</div>
+													</div>  
+													<div class="row form-group button-group">
+														<div class="col-md-6">
+															<!--<input type="submit" class="btn btn-primary btn-block" value="注册">-->
+															<a type="button" class="btn btn-primary btn-block" href="register.html">注册</a>
+														</div>
+														<div class="col-md-6">
+															<input type="submit" class="btn btn-primary btn-block" value="登录" id="enter">
+														</div>
+													</div>
+												</form>	
+											</div>
+
+											
+										</div>
+									</div>
+								</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrapValidator.js"></script>
+	<script src="js/language/zh_CN.js"></script>	
+	<script>
+		$(function(){
+			$('#login-form').bootstrapValidator({
+				message: 'This value is not valid',
+				submitButtons : 'input[type="submit"]',
+				fields:{
+					account:{
+						validators:{
+							notEmpty:{
+								message: '用户名不能为空'
+							},
+							remote:{
+								url:'register_loginCheck',
+								message: '用户不存在',
+								delay :  5000,
+								type: 'GET',
+								dataType: 'json'
+							}
+						}
+					},
+					password:{
+						trigger :'blur',
+						validators:{
+							notEmpty:{
+								message: '密码不能为空'
+							},
+							remote:{
+								url:'user_passwordCheck',
+								message: '密码错误,请重新输入',
+								type: 'GET',
+								dataType: 'json',
+								data:{
+									account: function(){
+										return $("input[name='account']").val();
+									}
+								}
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e) {
+					e.preventDefault();
+					$.ajax({
+						type:"POST",
+						url:"user_login",
+						data:$('#login-form').serialize(),
+						success:function(){
+							location.href="main.html";
+						}
+					});
+				});
+        });
+			
+	</script>	
+</body>
+</html>

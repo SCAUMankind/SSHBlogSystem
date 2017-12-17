@@ -1,0 +1,51 @@
+
+#content-wrap
+{
+	margin-left:0px;
+}
+#content-left
+{
+	height:800px;
+	background-color:#263238;
+}
+#body {
+    font-size: 14px;
+    background-color: #fff;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    overflow-y: hidden;
+}
+#panel-800988
+{
+	padding-top:20px;
+}
+#panel-800988 ul 
+{
+	list-style:none;
+}
+#panel-800988 ul li
+{
+	padding:2px 0;
+}
+#panel-800988 ul li a
+{
+	color:#525050;
+}
+.ms
+{
+	margin-right:auto;
+}
+#new_blog,#new_label
+{
+	padding:25px;
+}
+.title
+{
+	margin-bottom:2rem;
+}
+td
+{
+	vertical-align:middle !important; 
+}
+button{
+	margin:4px;
+}

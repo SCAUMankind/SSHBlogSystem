@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/manager.css">
+    <link rel="stylesheet" href="css/personal-message.css">
+    <link rel="stylesheet" href="css/fileinput.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="css/xcConfirm.css"/>
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css">
+</head>
+<body id="body">
+	<header class="app-header navbar" id="header">
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav navbar-nav hidden-md-down">
+            <li class="nav-item px-1">
+                <a class="nav-link" href="main.html">普通用户可点</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="blog.html">VIP通道</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#" name="randomGo">VIP通道2</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+                <!-- <a class="nav-link navbar-toggler aside-menu-toggler" href="index.html">退出系统</a> -->
+                <button id="reset" type="button" class="btn btn-primary btn-default">退出系统</button>
+            </li>
+
+        </ul>
+    </header>
+    <div class="container" id="content-wrap">
+		<div class="row clearfix" id="content">
+			<div class="col-md-3 column "  id="content-left">
+				<div class="panel-group" id="panel-800988">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-1">用户管理</a>
+						</div>
+						<div id="panel-element-1" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<ul>
+								 	<li>
+										 <a href="#" class="1" name="message">个人信息</a>
+									</li>
+									<li>
+										 <a href="#" class="2" name="noticer">分配角色</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-2" >博客管理</a>
+						</div>
+						<div id="panel-element-2" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul>
+								 	<li><a href="#" class="1">发表文章</a></li>
+								 	<li><a href="#" class="2">博客编辑</a></li>
+								 	<li><a href="#" class="3">博客分类</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-3">标签管理</a>
+						</div>
+						<div id="panel-element-3" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul>
+								 	<li><a href="#" class="1">新的标签</a></li>
+								 	<li><a href="#" class="2">标签编辑</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 column " id="content-right">
+				<div class="tabbable" id="tabs-948784">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							 <a href="#panel-1" data-toggle="tab"  name="message">个人信息</a>
+						</li>
+						<li>
+							 <a href="#panel-2" data-toggle="tab"  name="noticer">我的关注</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-1">
+							<div class="right-body">
+								<div class="row">
+									<div class="col-md-12 column col-md-push-6 search-bar" >
+										<form >
+											<div class="col-md-3 ">
+												<input type="text"  class="form-control "  placeholder="请输入查找昵称:" name="name" id="userName">
+											</div>
+											<button id="reset" type="button" class="btn btn-primary btn-sm">开始查找</button>
+											<button id="reset" type="button" class="btn btn-primary btn-sm">重置条件</button>
+									    </form>
+									</div>
+									<div class="col-md-12 column">
+										<table id="noticer-table" class="table table-striped table-condensed">
+											<thead>
+											<tr>
+												<th>用户</th>
+												<th>电话</th>
+												<th>微信</th>
+												<th>邮箱</th>
+												<th>职业</th>
+												<th>最近登录时间</th>
+											</tr>
+										</thead>
+										</table>
+									</div>
+								</div>	
+							</div>
+					    </div>
+						<div class="tab-pane" id="panel-2">
+							<div class="right-body">
+								<div class="row clearfix">
+									<div class="col-md-12 column col-md-push-6 search-bar" >
+										<form >
+											<div class="col-md-3 ">
+												<input type="text"  class="form-control "  placeholder="请输入查找昵称:" name="name" id="userName">
+											</div>
+											<button id="reset" type="button" class="btn btn-primary btn-sm">开始查找</button>
+											<button id="reset" type="button" class="btn btn-primary btn-sm">重置条件</button>
+									    </form>
+									</div>
+									<div class="col-md-12 column">
+										<table id="noticer-table" class="table table-striped table-condensed">
+											<thead>
+											<tr>
+												<th>用户</th>
+												<th>电话</th>
+												<th>微信</th>
+												<th>邮箱</th>
+												<th>职业</th>
+												<th>最近登录时间</th>
+											</tr>
+										</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="text-center">	
+								<ul id="noticer-paginator"></ul>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+	</script>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	<script type="text/javascript" src="js/fileinput.min.js"></script>
+	<script type="text/javascript" src="js/fileinput_locale_zh.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+	<script src="js/distpicker.data.min.js"></script>
+	<script src="js/distpicker.min.js"></script>
+	<script src="js/back.js"></script>
+	<script src="js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrapValidator.min.js"></script>
+	<script src="js/language/zh_CN.js"></script>
+	<script type='text/javascript'>
+	    function init(){
+	    	$.ajax({
+	    		type:"GET",
+	    		dataType:"json",
+	    		url:"userinfo_getUserInfo",
+	    		success:function(data){
+	    			var userInfo=data.userInfo;
+	    			$("#userName").val(userInfo.userName);
+	    			var sex;
+	    			if(userInfo.sex==true)
+	    			{
+	    				sex="male";
+	    				$("input[name='sex'][value="+sex+"]").attr("checked",true);
+	    			}
+	    			else if(userInfo.sex==false)
+	    			{
+	    				sex="female";
+	    				$("input[name='sex'][value="+sex+"]").attr("checked",true);
+	    			}
+	    			
+	    			if(userInfo.userBirthday!=null){
+	    				$("#date").val(userInfo.userBirthday.split('T')[0]);
+	    			}
+	    			$("input[name='job']").val(userInfo.userJob);
+	    			$("input[name='post']").val(userInfo.post);
+	    			$("textarea[name='introduction']").val(userInfo.userIntroduction);
+	    			$("select[name='province']").val(data.province);
+	    			$("select[name='province']").change();
+	    			$("select[name='city']").val(data.city);
+	    			$("select[name='city']").change();
+	    			$("select[name='area']").val(data.area);
+	    			$("img[name='head-image']").attr("src",userInfo.userImage);
+	    		}
+	    	})
+	    }
+		$('.form_date').datetimepicker({
+        //language:  'fr',
+        format: 'yyyy-mm-dd',
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    	});
+		function getNoticerTotalPages(){
+				$.ajax({
+					type:"POST",
+					dataType:"json",
+					url:'fans_getNoticerTotalPages',
+					success:function(data){
+						if(data.totalPages!=0)
+						{
+						var options = {
+							currentPage: 1,
+					        totalPages: data.totalPages,
+					        numberOfPages:6,
+					        bootstrapMajorVersion:3,
+					        useBootstrapTooltip:true,
+					        itemTexts:function(type,page, current){//文字翻译
+					            switch (type) {
+					                case "first":
+					                    return "首页";
+					                case "prev":
+					                    return "上一页";
+					                case "next":
+					                    return "下一页";
+					                case "last":
+					                    return "尾页";
+					                case "page":
+					                    return page;
+					            }
+					        },
+					        onPageClicked: function (event, originalEvent, type, page){
+		                        $.ajax({
+		                        	type: "POST",
+		                        	dataType:"json",  
+		                            url:'fans_getNoticer?Page='+page, //点击分页提交当前页码
+		                            success:function(data){
+	                                  var size = data.showSize;  
+	                                  var list = data.noticerList;
+	                                  var noticer = data.noticer;
+		                              //DOM操作
+		                              $("#noticer-table").empty();
+		                              var head='<thead><tr><th>关注者</th><th>关注时间'+
+		                              	'</th><th>操作</th></tr></thead><tbody>';
+		                              	$("#noticer-table").append(head);  
+		                              if (size != null){
+		                              	for(var i=0;i<list.length;i++){
+		                              		var html ='<tr>'+//
+											'<td>'+//
+											'<img src="'+noticer[i].userImage+'" class="img-thumbnail"/>'+//
+	                                        '<span>'+noticer[i].userName+'</span>'+//
+	                                        '</td>'+//
+	                                        '<td>'+list[i].date.split("T")[0]+'</td>'+//
+	                                        '<td>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default enter" name="userId-'+
+	                                        list[i].noticerId+'">进入博客'+//
+	                                        '</button>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default cancel" '+
+	                                        'name=userId-'+list[i].noticerId+'>取消关注'+//
+	                                        '</button>'+//
+	                                        '</td>'+//
+	                                        '</tr>';//
+	                                        $("#noticer-table").append(html);  
+		                              	}
+		                              }
+	                                  else{  
+	                                        $("#noticer-table").append('没有找到相应数据');
+	                                    }
+	                                  var tail='</tbody>';
+		                              $("#noticer-table").append(tail); 
+	                                  //添加进入博客功能
+	                                  $(".enter").click(function(){
+	                                  	var userId=$(this).attr("name").split('-')[1];
+	                                  	location.href="others.html?userId="+userId;
+	                                  })
+	                                  //添加取消关注功能
+	                                  $(".cancel").click(function(){
+	                                  	var userId=$(this).attr("name").split('-')[1];
+	                                  	$.ajax({
+	                                  		type:"POST",
+	                                  		url:"fans_deleteFans?userId="+userId,
+	                                  		success:function(){
+	                                  			$("a[name='noticer']").click();
+	                                  			var txt=  "取消关注成功！";
+												window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+												
+	                                  		}
+	                                  	})
+	                                  })
+		                            }
+		                            //success end;
+		                        })
+						}
+					}
+					$('#noticer-paginator').bootstrapPaginator(options);
+					$($('#noticer-paginator').children().get(0)).children().click();	
+					}
+					else 
+					{
+						$("#noticer-table").empty();
+		                var head='<thead><tr><th>关注者</th><th>关注时间'+
+		                              	'</th><th>操作</th></tr></thead><tbody>';
+		                $("#noticer-table").append(head); 
+		                $("#noticer-paginator").empty();
+
+					}
+				}
+		    })
+		}
+		function getFansTotalPages(){
+				$.ajax({
+					type:"POST",
+					dataType:"json",
+					url:'fans_getFansTotalPages',
+					success:function(data){
+						if(data.totalPages!=0)
+						{
+						var options = {
+							currentPage: 1,
+					        totalPages: data.totalPages,
+					        numberOfPages:6,
+					        bootstrapMajorVersion:3,
+					        useBootstrapTooltip:true,
+					        itemTexts:function(type,page, current){//文字翻译
+					            switch (type) {
+					                case "first":
+					                    return "首页";
+					                case "prev":
+					                    return "上一页";
+					                case "next":
+					                    return "下一页";
+					                case "last":
+					                    return "尾页";
+					                case "page":
+					                    return page;
+					            }
+					        },
+					        onPageClicked: function (event, originalEvent, type, page) {
+		                        $.ajax({
+		                        	type: "POST",
+		                        	dataType:"json",  
+		                            url:'fans_getFans?Page='+page, //点击分页提交当前页码
+		                            success:function(data){
+	                                  var size = data.showSize;  
+	                                  var list = data.fansList;  
+	                                  var fans = data.fans;
+	                                  var beNoticed=data.beNoticed;
+		                              //DOM操作
+		                              $("#fans-table").empty();
+		                              var head='<thead><tr><th>粉丝</th><th>关注时间'+
+		                              	'</th><th>操作</th></tr></thead><tbody>';
+		                              	$("#fans-table").append(head);  
+		                              if (size != null){
+		                              	for(var i=0;i<list.length;i++){
+		                              		var html ='<tr>'+//
+											'<td>'+//
+											'<img src="'+fans[i].userImage+'" class="img-thumbnail"/>'+//
+	                                        '<span>'+fans[i].userName+'</span>'+//
+	                                        '</td>'+//
+	                                        '<td>'+list[i].date.split("T")[0]+'</td>'+//
+	                                        '<td>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default enter2" name="userId-'+list[i].userId+'">进入博客'+//
+	                                        '</button>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default ';
+	                                        if(beNoticed[i]==false)
+	                                        {
+	                                        	html+='add" name="userId-'+list[i].userId+'">添加关注';
+	                                        }
+	                                        else 
+	                                        {
+	                                        	html+='">已关注';
+	                                    	}
+	                                        html+='</button>'+//
+	                                        '</td>'+//
+	                                        '</tr>';//
+	                                        $("#fans-table").append(html);  
+		                              	}
+		                              	
+		                              }
+	                                  else{  
+	                                        $("#fans-table").append('没有找到相应数据');
+	                                    }
+	                                    var tail='</tbody>';
+		                              	$("#fans-table").append(tail); 
+	                                  //添加进入博客功能
+	                                  $(".enter2").click(function(){
+	                                  	var userId=$(this).attr("name").split('-')[1];
+	                                  	location.href="others.html?userId="+userId;
+	                                  })
+	                                  //添加添加关注功能
+	                                  $(".add").click(function(){
+	                                  	var userId=$(this).attr("name").split('-')[1];
+	                                  	$(this).text("已关注");
+	                                  	$.ajax({
+	                                  		type:"POST",
+	                                  		url:"fans_createNoticer?userId="+userId,
+	                                  		success:function(){
+	                                  			var txt=  "添加关注成功！";
+												window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+	                                  		}
+	                                  	})
+	                                  }) 
+		                            }
+		                        })
+						}
+					}
+					$('#fans-paginator').bootstrapPaginator(options);
+					$($('#fans-paginator').children().get(0)).children().click();	
+					}
+				}
+		    })
+		}
+		$(function(){
+			init();
+			$("a[name='message']").click(init);
+			$("a[name='noticer']").click(getNoticerTotalPages);
+			$("a[name='fans']").click(getFansTotalPages);
+			$("#image-btn").change(function(e){
+			})
+			document.getElementById('image-btn').onchange = function(evt) {    
+		    // 如果浏览器不支持FileReader，则不处理    
+		    if (!window.FileReader) return;    
+		    var files = evt.target.files;    
+		    var f=document.getElementById("image-btn").value;  
+		    if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(f))  
+		        {  
+		          alert("图片类型必须是.gif,jpeg,jpg,png中的一种")  
+		          return false;  
+		        }  
+		    for (var i = 0, f; f = files[i]; i++) {    
+		   
+		        var reader = new FileReader();    
+		        reader.onload = (function(theFile) {    
+		            return function(e) {    
+		                // img 元素    
+		                document.getElementById('head-image').src = e.target.result; 
+		            };    
+		        })(f);    
+		        reader.readAsDataURL(f);    
+		    }    
+		}
+			$('#form-2').bootstrapValidator({
+				message: 'This value is not valid',
+				fields:{
+					name:{
+						validators:{
+							notEmpty:{
+								message: '用户名不能为空'
+							}
+						}
+					},
+					post:{
+						validators:{
+							emailAddress:{
+								message:'请输入合法的邮箱格式'
+							}
+						}
+					},
+					date:{
+						validators:{
+							date:{
+								format:'YYYY-MM-DD',
+								mssage:"请输入正确的格式"
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e) {
+					e.preventDefault();
+					alert("验证通过！");
+					$.ajax({
+						type:"GET",
+						url:"userinfo_updateUserInfo",
+						data:$('#form-2').serialize(),
+						success:function(){
+							alert("成功！");
+						}
+					})
+				});
+			$("#hand-in-image").click(function(){
+					$("#form-1").submit();
+					$("#form-2").submit();
+	
+			})
+		});
+				       
+	  </script>
+</body>
+</html>

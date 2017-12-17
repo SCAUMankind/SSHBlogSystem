@@ -37,12 +37,12 @@ public class UserAction extends ActionSupport{
 	public UserInfoService getUserInfoService() {
 		return userInfoService;
 	}	
-	public String login() throws Exception{
+	public String login() {
+		System.out.println("inLogin!!!");
 		HttpServletRequest request = ServletActionContext.getRequest(); 
 		HttpSession session = request.getSession();
 		String account = request.getParameter("account");  
         String password = request.getParameter("password"); 
-        System.out.println("login"+account+" "+password);
 		if(userService.loginCheck(account,password)==true){
 			Integer userId=userService.loadUserId(account);
 			session.setAttribute("userId", userId);
@@ -59,9 +59,12 @@ public class UserAction extends ActionSupport{
 		jsonMap=new HashMap<String, Object>();
 		String password=request.getParameter("password");
 		String account=request.getParameter("account");
-		System.out.println(account+" "+password);
 		Boolean match=userService.loginCheck(account,password);
 		jsonMap.put("valid", match);
 		return "jsonMap";
+	}
+	public String execute(){
+		System.out.println("111222333");
+		return Constant.SUCCESS;
 	}
 }

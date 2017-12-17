@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/article.css">
+    <link rel="stylesheet" type="text/css" href="css/xcConfirm.css"/>
+	<link rel="stylesheet" type="text/css" href="css/comment.css"/>
+</head>
+<body id="body">
+	<header class="app-header navbar" id="header">
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav navbar-nav hidden-md-down">
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+            </li>
+
+            <li class="nav-item px-1">
+                <a class="nav-link" href="main.html">首页</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="blog.html">博客管理</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#" name="randomGo">随便逛逛</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link"  href="manager.html" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img name="personal-head-image" src="" class="img-avatar" alt="admin@bootstrapmaster.com">
+                    <span >admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler aside-menu-toggler" href="index.html">退出</a>
+            </li>
+
+        </ul>
+    </header>
+	<div class="container top-container" id="main-content">
+		<div class="row clearfix">
+			<div class="col-md-4 column text-center" id="side">
+			    <!--img-circle -->
+			    <div id="side-content" class="text-center">
+			    	<div id="side-content-top">
+			    		<div class="head" id="head-image-box">
+							<img id="big-head-image" name="head-image" alt="140x140" src="" class="img-circle" />
+							<h2 id="userName">
+								个人昵称
+							</h2>
+			    		</div>
+			    		<div class="head-message">
+							<ul class="row text-left">
+								<li >粉丝: <span id="fansNum"></span></li>
+								<li >访问量: <span id="PV"></span></li>
+								<li >文章量: <span id="blogNum"></span></li>
+								<li >最近登录时间: <span id="recentLogin"></span></li>
+							</ul>
+			    		</div>
+			    	</div>
+			    </div>
+					<div class="side-content">
+			    		<div class="sidebar-title">
+			    		<span>文章排行Top10</span>
+			    		</div>
+			    		<div class="sidebar-content">
+			    		<ul id="rank">
+			    			<a href=""><li></li></a>
+			    			<a href=""><li></li></a>
+			    			<a href=""><li></li></a>
+			    		</ul>
+			    		</div>
+			    	</div>	
+			    
+			</div>
+			<div class="col-md-8 column " id="right-part">
+				<div id="right-content" class="row">
+					<div id="blog-wrap">
+						<div class="blog">
+							<h2 class="text-center" id="blog-title">
+								博客标题
+							</h2>
+							<ul class="list-inline" id="blog-label">
+								<li class="head">标签：</li>
+								<li>标签1</li>
+								<li>标签2</li>
+							</ul>
+							<p id="blog-text">
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文
+								正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+							</p>
+							<h4 class="critical">
+								评论区
+							</h2>
+							<ul id="comment" class="media-list">
+					            <li class="media">
+					                <div class="media-left">
+					                    <a href="#">
+					                        <img class="media-object img-circle" src="image/main/1.jpg" alt="广丰">
+					                    </a>
+					                </div>
+					                <div class="media-body">
+					                    <h4 class="media-heading">风往北吹</h4>
+
+					                    <p>爱赞了，这个插件真好用.....我看看他的评论模块好看不www.niubai.net.cn</p>
+
+					                    <div class="ds-comment-footer">
+					                        <span class="ds-time" datetime="2016-01-28T20:13:29+08:00" title="2016年1月28日 下午8:13:29">2016年1月28日</span>&nbsp;
+					                        <a name="critical-id">
+					                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复
+					                        </a>
+					                    </div>
+					                    <hr/>
+					                    <ul class="media-list">
+					                        <li class="media">
+					                            <div class="media-left">
+					                                <a href="#">
+					                                    <img class="media-object img-circle" src="image/main/1.jpg" alt="牛逼">
+					                                </a>
+					                            </div>
+					                            <div class="media-body">
+					                                <h4 class="media-heading">网名为空</h4>
+
+					                                <p>你看看这个评论的插件如何，可以拿来作为我博客的评论伯曼吗？可以得花，我就给群主说，让他给我源码。</p>
+
+					                                <div class="ds-comment-footer">
+					                                    <span class="ds-time" datetime="2016-01-28T20:13:29+08:00"
+					                                          title="2016年1月28日 下午8:13:29">2016年2月8日</span>&nbsp;
+					                                    <a>
+					                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复
+					                                    </a>
+					                                </div>
+					                            </div>
+					                        </li>
+					                        <hr/>
+					                        <li class="media">
+					                            <div class="media-left">
+					                                <a href="#">
+					                                    <img class="media-object img-circle" src="css/img/b.png" alt="牛逼">
+					                                </a>
+					                            </div>
+					                            <div class="media-body">
+					                                <h4 class="media-heading">网名为空</h4>
+
+					                                <p>你看看这个评论的插件如何，可以拿来作为我博客的评论伯曼吗？可以得花，我就给群主说，让他给我源码。</p>
+
+					                                <div class="ds-comment-footer">
+					                                    <span class="ds-time" datetime="2016-01-28T20:13:29+08:00"
+					                                          title="2016年1月28日 下午8:13:29">2016年2月8日</span>&nbsp;
+					                                    <a>
+					                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复
+					                                    </a>
+					                                </div>
+					                            </div>
+					                        </li>
+					                    </ul>
+
+					                </div>
+					            </li>
+					            <hr/>
+					            <li class="media">
+					                <div class="media-left">
+					                    <a href="#">
+					                        <img class="media-object img-circle" src="css/img/c.png" alt="菜鸟">
+					                    </a>
+					                </div>
+					                <div class="media-body">
+					                    <h4 class="media-heading">菜鸡一枚我不哭</h4>
+
+					                    <p>呵呵，楼上的真搞笑，这个评论模板的插件好丑陋，简直丑爆了，我简单做的都比这个好，信不信，我分分钟肥腻做出来一个，吓屎你们这群都比</p>
+
+					                    <div class="ds-comment-footer">
+					                        <span class="ds-time" datetime="2016-01-28T20:13:29+08:00" title="2016年1月28日 下午8:13:29">2016年5月10日</span>&nbsp;
+					                        <a>
+					                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复
+					                        </a>
+					                    </div>
+
+
+					                </div>
+					            </li>
+
+					            <hr/>
+					            <li class="media">
+					                <div class="media-left">
+					                    <a href="#">
+					                        <img class="media-object img-circle" src="css/img/a.png" alt="广丰">
+					                    </a>
+					                </div>
+					                <div class="media-body">
+					                    <h4 class="media-heading">风往北吹</h4>
+
+					                    <p>爱赞了，这个插件真好用.....我看看他的评论模块好看不</p>
+
+					                    <div class="ds-comment-footer">
+					                        <span class="ds-time" datetime="2016-01-28T20:13:29+08:00" title="2016年1月28日 下午8:13:29">2016年1月28日</span>&nbsp;
+					                        <a>
+					                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复
+					                        </a>
+					                    </div>
+					                    <hr/>
+					                    <ul class="media-list">
+					                        <li class="media">
+					                            <div class="media-left">
+					                                <a href="#">
+					                                    <img class="media-object img-circle" src="css/img/b.png" alt="牛逼">
+					                                </a>
+					                            </div>
+					                            <div class="media-body">
+					                                <h4 class="media-heading">网名为空</h4>
+
+					                                <p>你看看这个评论的插件如何，可以拿来作为我博客的评论伯曼吗？可以得花，我就给群主说，让他给我源码。</p>
+
+					                                <div class="ds-comment-footer">
+					                                    <span class="ds-time" datetime="2016-01-28T20:13:29+08:00"
+					                                          title="2016年1月28日 下午8:13:29">2016年2月8日</span>&nbsp;
+					                                    <a>
+					                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复
+					                                    </a>
+					                                </div>
+					                                <hr/>
+					                                <ul class="media-list">
+					                                    <li class="media">
+					                                        <div class="media-left">
+					                                            <a href="#">
+					                                                <img class="media-object img-circle" src="css/img/b.png" alt="牛逼">
+					                                            </a>
+					                                        </div>
+					                                        <div class="media-body">
+					                                            <h4 class="media-heading">网名为空</h4>
+
+					                                            <p>你看看这个评论的插件如何，可以拿来作为我博客的评论伯曼吗？可以得花，我就给群主说，让他给我源码。</p>
+
+					                                            <div class="ds-comment-footer">
+					                                    <span class="ds-time" datetime="2016-01-28T20:13:29+08:00"
+					                                          title="2016年1月28日 下午8:13:29">2016年2月8日</span>&nbsp;
+					                                                <a>
+					                                                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+					                                                    回复
+					                                                </a>
+					                                            </div>
+
+					                                        </div>
+
+					                                    </li>
+					                                </ul>
+					                            </div>
+
+					                        </li>
+					                    </ul>
+
+					                </div>
+					            </li>
+					        </ul>
+        					<div class="form-group" id="comment-input">
+        						<h4 class="text-center">发表评论</h4>
+					            <span class="input input--isao">
+					            		<span style="font-weight:bold;">用户：</span><span id="Name"></span>	
+										<input placeholder="请输入评论内容……" class="input__field input__field--isao" type="text" id="input-38" style="margin-top:1rem;">
+										<label class="input__label input__label--isao" for="input-38">
+					                        <span class="input__label-content input__label-content--isao"></span>
+					                    </label>
+					                    <a id="addcommentbutton" type="button" class="btn btn-warning btn-block ladda-button" title=""
+					                         data-style="expand-right" data-original-title="评论">
+															<span class="ladda-label">
+																提交评论
+															</span>
+					                    </a>
+							    </span>
+					        </div>
+						</div>
+					</div>
+					
+				</div>
+
+				</div>
+				
+		</div>
+	</div>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	<script src="js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+	<script type='text/javascript'>
+		$("a[name='randomGo']").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"userinfo_getUserIdRandomly",
+				dataType:"json",
+				success:function(data){
+					if(data.userId==0){
+						location.href=location.href;
+					}else{
+						location.href="others.html?userId="+data.userId;
+					}
+				}
+			})
+		})
+		function GetQueryString(name)
+		{
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+		var blogTotalNum;//保存博客总数
+		var id;
+		if(GetQueryString("userId")==null)
+		{
+			id=0;
+		}
+		else 
+		{
+			id=GetQueryString("userId");
+		}
+		function getUserInfomation(){	
+						var getUserInfoURL;
+						if(id==0)
+						{
+							getUserInfoURL='userinfo_getUserInfo';
+						}
+						else 
+						{
+							getUserInfoURL='userinfo_getUserInfo?userId='+id;
+						}
+						//获取userInfo
+						$.ajax({
+							type:"GET",
+							dataType:"json",
+							url:getUserInfoURL,
+							success:function(data){
+								var imageURL=data.userInfo.userImage;
+								var userName=data.userInfo.userName;
+								var time=data.userInfo.userRecentLoginTime;
+								var PV=data.userInfo.userPV;
+								$("#userName").text(userName);
+								$("img[name='head-image']").attr("src",imageURL);
+								$("#recentLogin").text(time);
+								$("#PV").text(PV);
+							}
+						})
+						$.ajax({
+							type:"GET",
+							dataType:"json",
+							url:'userinfo_getUserInfo',
+							success:function(data){
+								var imageURL=data.userInfo.userImage;
+								var name=data.userInfo.userName;
+								$("img[name='personal-head-image']").attr("src",imageURL);
+								$("#Name").text(name);
+							}
+						})
+						//获取粉丝数和关注数
+						var getNumberURL;
+						if(id==0)
+						{
+							getNumberURL='fans_getNumber';
+						}
+						else 
+						{
+							getNumberURL='fans_getNumber?userId='+id;
+						}
+						$.ajax({
+							type:"GET",
+							dataType:"json",
+							url:getNumberURL,
+							success:function(data){
+								var fansNumber=data.fansNumber;
+								var noticerNumber=data.noticerNumber;
+								$("#fansNum").text(fansNumber);
+							}
+						})
+						var getBlogTotalNumURL;
+						if(id==0)
+						{
+							getBlogTotalNumURL='blog_getBlogTotalNum';
+						}
+						else 
+						{
+							getBlogTotalNumURL='blog_getBlogTotalNum?userId='+id;
+						}
+						$.ajax({
+							type:"GET",
+							dataType:"json",
+							url:getBlogTotalNumURL,
+							success:function(data){
+								var blogNum=data.blogTotalNum;
+								blogTotalNum=data.blogTotalNum;
+								$("#blogNum").text(blogNum);
+							}
+						})
+						//获取TOP10
+						var getTopTenURL;
+						if(id==0)
+						{
+							getTopTenURL="blog_getTop10";
+						}
+						else 
+						{
+							getTopTenURL="blog_getTop10?userId="+id;
+						}
+						$.ajax({
+							type:"GET",
+							dataType:"json",
+							url:getTopTenURL,
+							success:function(data){
+								var blogList=data.blogList;
+								var size=data.size;
+								$("#rank").empty();
+								for(var i=0;i<size;i++)
+								{
+									var html='<li>'+
+										'<a name="top10-blogId-'+blogList[i].blogId+'">'+
+										blogList[i].title+'('+blogList[i].blogPV+')'+
+										'</a>'+
+										'</li>';
+									$("#rank").append(html);
+								}
+								$("a[name^='top10-blogId-']").click(function(){
+									var blogId=$(this).attr("name").split('-')[2];
+									var link;
+									if(id==0)
+									{
+										link="article.html?blogId="+blogId;
+									}
+									else 
+									{
+										link="article.html?blogId="+blogId+"&userId="+id;
+									}
+									location.href=link;
+								})
+							}
+						})
+						//获取按钮
+						if(id!=0)
+						$.ajax({
+							type:"GET",
+							dataType:"json",
+							url:'fans_isFans?userId='+GetQueryString("userId"),
+							success:function(data){
+								var flag =data.flag;
+								var html='<button  type="button" class="btn btn-success btn-large" name="index">个人主页</button>&nbsp;&nbsp;&nbsp;';
+								$("#head-image-box").append(html);
+								if(flag==true)
+								{
+									html='<button  type="button" class="btn btn-success btn-large" name="cancel">取消关注</button>';
+									$("#head-image-box").append(html);
+								}
+								else
+								{
+									html='<button  type="button" class="btn btn-success btn-large" name="add">添加关注</button>';
+									$("#head-image-box").append(html);
+								}
+								//添加js功能
+								$("button[name='index']").click(function(){
+									location.href="others.html?userId="+GetQueryString("userId");
+								})
+								$("button[name='add']").click(function(){
+									$.ajax({
+										type:"get",
+										url:"fans_createNoticer?userId="+GetQueryString("userId"),
+										success:function(){
+											location.href=location.href;
+										}
+									})
+								})
+								$("button[name='cancel']").click(function(){
+									$.ajax({
+										type:"get",
+										url:"fans_deleteFans?userId="+GetQueryString("userId"),
+										success:function(){
+											location.href=location.href;
+										}
+									})
+								})
+							}
+						})
+		}
+			
+		function getTotalPages(){
+				$.ajax({
+					type:"GET",
+					dataType:"json",
+					url:'blog_getTotalPages?userId='+GetQueryString("userId"),
+					success:function(data){
+						var options = {
+							currentPage: 1,
+					        totalPages: data.totalPages,
+					        numberOfPages:5,
+					        bootstrapMajorVersion:3,
+					        useBootstrapTooltip:true,
+					        itemTexts:function(type,page, current){//文字翻译
+					            switch (type) {
+					                case "first":
+					                    return "首页";
+					                case "prev":
+					                    return "上一页";
+					                case "next":
+					                    return "下一页";
+					                case "last":
+					                    return "尾页";
+					                case "page":
+					                    return page;
+					            }
+					        },
+					        onPageClicked: function (event, originalEvent, type, page) {
+		                        $.ajax({
+		                        	type: "GET",
+		                        	dataType:"json",  
+		                            url:'blog_getBlog?Page='+page+'&userId='+GetQueryString("userId"),//点击分页提交当前页码
+		                            success:function(data){
+	                                  size = data.showSize;  
+	                                  list = data.blogList;  
+		                              $("#blog-wrap").empty();
+		                              if (list != null) {  
+	                                    $.each( list, function(index, blog){    
+	                                        var html = '<div class="blog"><h2>'+//  
+	                                        	blog.title +//
+	                                        	'</h2><p>' +//
+	                                        	blog.text +'</p><p class="text-right"><a class="btn" href="article.html?blogId='+blog.blogId+
+	                                        	'&userId='+GetQueryString("userId")+
+	                                        	'">阅读博客 »</a></p>';
+	                                            $("#blog-wrap").append(html);   
+	                                        });  
+	                                    }
+	                                    else{  
+	                                        $("#blog-wrap").append('没有找到相应数据');  
+	                                    } 
+		                            }
+		                        })
+						}
+					}
+					$('#example').bootstrapPaginator(options);
+					$($('#example').children().get(0)).children().click();
+					//模拟一次点击事件
+
+				}
+		    })
+		}
+		function getBlogInfomation(){
+			var loadBlogURL;
+			if(id==0){
+				loadBlogURL='blog_loadBlog?blogId='+GetQueryString('blogId');
+			}else{
+				loadBlogURL='blog_loadBlog?blogId='+GetQueryString('blogId')+'&userId='+id;
+			}
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:loadBlogURL,
+				success:function(data){
+					var blog=data.blog;
+					$("#blog-title").text(blog.title);
+					$("#blog-text").text(blog.text);
+				}
+			})
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:'label_getLabelListByBlogId?blogId='+GetQueryString('blogId'),
+				success:function(data){
+					var labelList=data.labelList;
+					$("#blog-label").empty();
+					var head='<li class="head">标签：</li>';
+					$("#blog-label").append(head);
+					for(var i=0;i<labelList.length;i++)
+					{
+						var html='<li>'+labelList[i].labelTitle+'</li>';
+						$("#blog-label").append(html);
+					}
+				}
+			})
+			//获取评论信息
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:"comment_getCommentList?blogId="+GetQueryString('blogId'),
+				success:function(data){
+					var commentList=data.commentList;
+					var userInfoList=data.userInfoList;
+					$("#comment").empty();
+					for(var i=0;i<commentList.length;i++)
+					{
+						var html="";
+						//是根评论
+						if(commentList[i].fatherId==0)
+						{
+							html+='<li class="media" name="comment-'+
+							commentList[i].id+'">'+
+							'<div class="media-left">'+
+								'<a href="#">'+
+									'<img class="media-object img-circle" src="'+
+									userInfoList[i].userImage+'" alt="广丰">'+
+								'</a>'+
+							'</div>'+
+							'<div class="media-body">'+
+								'<h4 class="media-heading">'+userInfoList[i].userName+'</h4>'+
+								'<p>'+commentList[i].content+'</p>'+
+								'<div class="ds-comment-footer">'+
+									'<span class="ds-time">'+commentList[i].date.split("T")[0]+'&nbsp;'+commentList[i].date.split("T")[1]+'</span>&nbsp;'+
+										'<a name="comment-'+commentList[i].id+'">'+
+											'<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复'+
+										'</a>'+
+								'</div>';
+							if(commentList[i].haveReply==true)
+							{
+								html+='<hr/>'+
+								'<ul class="media-list" name="reply-'+commentList[i].id+'">'+
+								'</ul>';
+							}
+							html+='</li>';
+							$("#comment").append(html);
+						}
+						//是回复
+						else
+						{
+							var fatherId=commentList[i].fatherId;
+							html+='<li class="media" name="comment-'+
+							commentList[i].id+'">'+
+							'<div class="media-left">'+
+								'<a href="#">'+
+									'<img class="media-object img-circle" src="'+
+									userInfoList[i].userImage+'" alt="广丰">'+
+								'</a>'+
+							'</div>'+
+							'<div class="media-body">'+
+								'<h4 class="media-heading">'+userInfoList[i].userName+'</h4>'+
+								'<p>'+commentList[i].content+'</p>'+
+								'<div class="ds-comment-footer">'+
+									'<span class="ds-time">'+commentList[i].date.split("T")[0]+'&nbsp;'+commentList[i].date.split("T")[1]+'</span>&nbsp;'+
+										'<a name="comment-'+commentList[i].id+'">'+
+											'<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复'+
+										'</a>'+
+								'</div>';
+							if(commentList[i].haveReply==true)
+							{
+								html+='<hr/>'+
+								'<ul class="media-list" name="reply-'+commentList[i].id+'">'+
+								'</ul>';
+							}
+							html+='</li>';
+							$('ul[name="reply-'+fatherId+'"]').append(html);
+						}
+					}
+					//为按钮添加回复功能
+					$("a[name^='comment-']").click(function(){
+						var commentId =$(this).attr("name").split('-')[1];
+		                var txt=  "请输入回复内容";
+						window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.input,{
+							onOk:function(content){
+								$.ajax({
+									type:"GET",
+									url:"comment_reply?blogId="+GetQueryString('blogId')+"&commentId="+commentId+"&content="+content,
+									success:function(){
+										var txt=  "回复成功";
+										window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+										location.href=location.href;
+										}
+									})
+							}
+						});
+					})
+				}
+			})
+			//添加提交评论的js功能
+			$("#addcommentbutton").click(function(){
+				$.ajax({
+					type:"GET",
+					url:"comment_addComment?blogId="+GetQueryString('blogId')+"&content="+$("#input-38").val(),
+					success:function(){
+						var txt=  "成功回复";
+						window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+						location.href=location.href;
+					}
+				})
+			})
+		}
+		$(function(){
+			//getTotalPages();
+			getBlogInfomation();
+			getUserInfomation();
+		});
+					       
+	  </script>
+</body>
+</html>

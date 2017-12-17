@@ -58,7 +58,7 @@ public class UploadAction extends ActionSupport{
     	System.out.println(ServletActionContext.getServletContext().getRealPath(Constant.UPLOAD_DIR));
     	 //获取需要上传文件的文件路径  
     	System.out.println("fileFileName:"+fileFileName+"\nfileContentType:"+fileContentType);
-        File uploadFile=new File(ServletActionContext.getServletContext().getRealPath(Constant.UPLOAD_DIR));  
+    	File uploadFile=new File(ServletActionContext.getServletContext().getRealPath(Constant.UPLOAD_DIR));  
         //System.out.println(ServletActionContext.getServletContext().getRealPath(Constant.UPLOAD_DIR));
         //判断文件是否上传，如果上传的话将会创建该目录  
 		//File uploadFile=new File("WebContent\\uploadImage");
@@ -70,10 +70,11 @@ public class UploadAction extends ActionSupport{
         //声明文件输入流，为输入流指定文件路径  
         if(file!=null){
         long time = System.currentTimeMillis();  
+        
         FileInputStream input=new FileInputStream(file);  
         //获取输出流，获取文件的文件地址及名称  
-        FileOutputStream out=new FileOutputStream(uploadFile + "\\" +time+fileFileName);  
-        System.out.println(uploadFile + "\\" +time+fileFileName);
+        FileOutputStream out=new FileOutputStream(uploadFile + "\\" +time+""+fileFileName);  
+        System.out.println(uploadFile + "\\" +time+""+fileFileName);
         try{  
             byte[] b=new byte[1024];//每次写入的大小  
             int i=0;  
@@ -86,7 +87,9 @@ public class UploadAction extends ActionSupport{
             input.close();  
             out.close();  
         } 
-        	userInfoService.updateUserImage(userId, Constant.UPLOAD_DIR + "\\" +fileFileName);	
+        	userInfoService.updateUserImage(userId, Constant.UPLOAD_DIR + "\\" +time+fileFileName);	
+        }else{
+        	return "fail";
         }
         return "success";  
     	/*System.out.println("1111");

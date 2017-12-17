@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import java.util.Date;
+import java.util.List;
 
 import com.blog.beans.UserInfo;
 
@@ -14,4 +15,5 @@ public interface UserInfoService extends BaseService<UserInfo> {
 	public String loadUserNameById(Integer userId);
 	public UserInfo getUserInfoByUserId(Integer userId);
 	public Integer getUserIdRandomly(Integer userId);
+	public List<Integer> getUserIdListRandomly(Integer userId);
 }

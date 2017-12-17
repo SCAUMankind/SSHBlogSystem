@@ -23,7 +23,7 @@
 										<div class="tab-content">
 											<div class="tab-content-inner active" >
 												<h3 class="cursive-font text-center">个人博客系统</h3>
-												<form id="login-form" action="login" method="post">
+												<form id="login-form" action="login" >
 													<div class="row form-group">
 														<div class="col-md-12">
 															<label for="account">用户名</label>
@@ -111,24 +111,14 @@
 			}).on('success.form.bv', function(e) {
 					e.preventDefault();
 					$.ajax({
-						type:"GET",
+						type:"POST",
 						url:"user_login",
 						data:$('#login-form').serialize(),
 						success:function(){
 							location.href="main.html";
 						}
-					})
+					});
 				});
-			//$("#login-form").submit(function(ev){ev.preventDefault();});  
-			("#enter").click(function(){
-				//$("#login-form").bootstrapValidator('validate');
-				/*var bootstrapValidator = $("#login-form").data('bootstrapValidator');
-				bootstrapValidator.validate();
-				alert(bootstrapValidator.isValid());
-				if(bootstrapValidator.isValid()){
-					
-				}*/
-			})
         });
 			
 	</script>	

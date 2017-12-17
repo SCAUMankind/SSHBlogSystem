@@ -23,7 +23,7 @@
 										<div class="tab-content">
 											<div class="tab-content-inner active" >
 												<h3 class="cursive-font text-center">用户注册</h3>
-												<form action="register_create" class="form-horizontal" id="register-form">
+												<form action="register_create" class="form-horizontal" id="register-form" method="post">
 													<div class="form-group">
 														<label for="account" class="control-label col-md-4">账&ensp;号</label>
 														<div class="col-md-8 ">
@@ -114,17 +114,14 @@
 						}
 					}
 				}
-			}).on('success.form.bv', function(e) {
-					e.preventDefault();
-					$.ajax({
-						type:"GET",
-						url:"register_create",
-						data:$('#register-form').serialize(),
-						success:function(){
-							location.href="userinfo.html";
-						}
-					})
-				});
+			});
+			$("#next").click(function(e){
+	             $('#register-form').bootstrapValidator('validate');
+	            var bootstrapValidator = $("#register-form").data('bootstrapValidator');
+	            if(bootstrapValidator.isValid()) {
+	                bootstrapValidator.defaultSubmit();
+	        }
+	        });
 		});
 	</script>
 </body>

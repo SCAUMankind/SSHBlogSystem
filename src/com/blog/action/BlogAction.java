@@ -132,23 +132,6 @@ public class BlogAction extends ActionSupport{
 		System.out.println("blogList:"+blogList);
 		return "jsonMap";  
 	}
-	public String getClassifyBlog(){
-		HttpServletRequest request = ServletActionContext.getRequest(); 
-		HttpSession session = request.getSession();
-		jsonMap = new HashMap<String, Object>();  
-		Integer userId=(Integer)session.getAttribute("userId");
-		Integer pageNum=Integer.parseInt(request.getParameter("Page"));
-		System.out.println("userId"+userId+" pageNum"+pageNum);
-		List<Blog> blogList=blogService.showBlogByPage(userId, pageNum, Constant.BLOG_CLASSIFY_SIZE);
-		Integer showSize=blogList.size();//读取到的数量
-		List<Label> labelList=labelService.getAllLabel(userId);
-		jsonMap.put("showSize", showSize);
-		jsonMap.put("blogList", blogList);
-		jsonMap.put("labelList",labelList);
-		System.out.println("showSize:"+showSize);
-		System.out.println("blogList:"+blogList);
-		return "jsonMap";  
-	}
 	public String createBlog(){
 		HttpServletRequest request = ServletActionContext.getRequest(); 
 		HttpSession session = request.getSession();
@@ -157,11 +140,26 @@ public class BlogAction extends ActionSupport{
 		String title = request.getParameter("blog-title");
 		String[] label =request.getParameterValues("label");
 		String text =request.getParameter("text");
-		blogService.saveBlog(userId, title, text);
-		Integer blogId=blogService.getBlogId(userId, title);
-		for(String str:label){
-			Integer labelId=Integer.parseInt(str);
-			blogLabelLinkService.saveLink(blogId, labelId);
+		String blogIdString=request.getParameter("blogId");
+		if(blogIdString==null||blogIdString==""){//是新建博客
+			blogService.saveBlog(userId, title, text);
+			Integer blogId=blogService.getBlogId(userId, title);
+			if(label!=null){
+				for(String str:label){
+				Integer labelId=Integer.parseInt(str);
+				blogLabelLinkService.saveLink(blogId, labelId);
+				}
+			}	
+		}else{//是修改博客
+			Integer blogId=Integer.parseInt(blogIdString);
+			blogService.updateBlog(blogId, title, text);
+			blogLabelLinkService.deleteBlog(blogId);
+			if(label!=null){
+				for(String str:label){
+					Integer labelId=Integer.parseInt(str);
+					blogLabelLinkService.saveLink(blogId, labelId);
+				}
+			}
 		}
 		return "jsonMap";
 	}

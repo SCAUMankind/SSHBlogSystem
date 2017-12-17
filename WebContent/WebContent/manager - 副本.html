@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/manager.css">
+    <link rel="stylesheet" href="css/personal-message.css">
+    <link rel="stylesheet" href="css/fileinput.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="css/xcConfirm.css"/>
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css">
+</head>
+<body id="body">
+	<header class="app-header navbar" id="header">
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav navbar-nav hidden-md-down">
+            <li class="nav-item px-1">
+                <a class="nav-link" href="main.html">普通用户可点</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="blog.html">VIP通道</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#" name="randomGo">VIP通道2</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+                <!-- <a class="nav-link navbar-toggler aside-menu-toggler" href="index.html">退出系统</a> -->
+                <button id="reset" type="button" class="btn btn-primary btn-default">退出系统</button>
+            </li>
+
+        </ul>
+    </header>
+	
+    <div class="container" id="content-wrap">
+		<div class="row clearfix" id="content">
+			<div class="col-md-3 column "  id="content-left">
+				<div class="panel-group" id="panel-800988">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-1">信息管理</a>
+						</div>
+						<div id="panel-element-1" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<ul>
+								 	<li>
+										 <a href="#" class="1" name="message">个人信息</a>
+									</li>
+									<li>
+										 <a href="#" class="2" name="change-password">修改密码</a>
+									</li>
+									<li>
+										 <a href="#" class="3" name="others-message">查看他人信息</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 column " id="content-right">
+				<div class="tabbable" id="tabs-948784">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							 <a href="#panel-1" data-toggle="tab"  name="message">个人信息</a>
+						</li>
+						<li>
+							 <a href="#panel-2" data-toggle="tab"  name="change-password">修改密码</a>
+						</li>
+						<li>
+							 <a href="#panel-3" data-toggle="tab"  name="others-message">查看他人信息</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-1">
+							<div id="personal-message">
+								<!-- <div class="row"> -->
+									<h3 class='text-center'>个人信息</h3>
+									<div class="col-md-8 col-md-push-1">
+									<form action="userinfo_updateUserInfo" class="form-horizontal" id="form-2">
+													<div class="row form-group">
+														<label for="name" class="control-label col-md-4">昵&ensp;称</label>
+														<div class="col-md-8 ">
+															<input type="text"  class="form-control"  placeholder="昵称" name="name" id="userName">
+														</div>
+													</div>
+													<div class="row form-group">
+															<label for="sex" class="control-label col-md-4">性&ensp;别</label>
+															<div class="col-md-8">
+																<label class="radio-inline">
+																  <input type="radio" name="sex" i="male" value="male"> 男
+																</label>
+																<label class="radio-inline">
+																  <input type="radio" name="sex" id="female" value="female"> 女
+																</label>
+															</div>
+													</div>
+													
+													<div class="row form-group">
+													<label for="password" class="control-label col-md-4">生&ensp;日</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control form_date"    id="date" name="date">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="username" class="control-label col-md-4">职&ensp;位</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="职位" name="job" >
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="password" class="control-label col-md-4">邮&ensp;箱</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="邮箱地址" name="post">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="password" class="control-label col-md-4">微&ensp;信</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="邮箱地址" name="post">
+														</div>
+													</div>
+													<div class="row form-group">	
+														<label for="post" class="control-label col-md-4">联系方式</label>
+														<div class="col-md-8">
+															<input type="text"  class="form-control"  placeholder="tel" name="post" >
+														</div>
+													</div>
+													<div class="row form-group button-group">
+														<div class="col-md-4 col-md-push-4">
+															<button id="reset" type="button" class="btn btn-warning btn-large">重置信息</button>
+														</div>
+														<div class="col-md-4 col-md-push-4">
+															<button id="save" type="button" class="btn btn-warning btn-large">保存修改</button>
+														</div>
+													</div>	
+											  </form>	
+										</div>
+								<!-- </div>	 -->
+							</div>
+					    </div>
+						<div class="tab-pane" id="panel-2">
+							<div id="change-password">
+								<div class="row clearfix">
+								<h3 class='text-center'>修改密码</h3>
+									<div class="col-md-8 col-md-push-3">
+										<form action="userinfo_updateUserInfo" class="form-horizontal" id="form-2">
+													<div class="row form-group">
+														<label for="name" class="control-label col-md-2">旧密码</label>
+														<div class="col-md-6 ">
+															<input type="text"  class="form-control"  placeholder="昵称" name="name" id="userName">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="name" class="control-label col-md-2">昵&ensp;称</label>
+														<div class="col-md-6 ">
+															<input type="text"  class="form-control"  placeholder="昵称" name="name" id="userName">
+														</div>
+													</div>
+													<div class="row form-group">
+														<label for="name" class="control-label col-md-2">昵&ensp;称</label>
+														<div class="col-md-6 ">
+															<input type="text"  class="form-control"  placeholder="昵称" name="name" id="userName">
+														</div>
+													</div>
+													<div class="row form-group button-group">
+															<button id="save" type="button" class="btn btn-warning btn-large col-md-3 col-md-push-3">保存修改</button>
+													</div>	
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="panel-3">
+							<div id="">
+								<div class="row clearfix ">
+									<div class="col-md-12 column">
+										<table class="table table-striped" id="userInfo-table">
+										<thead>
+											<tr>
+												<th>用户</th>
+												<th>生日	</th>
+												<th>微信</th>
+												<th>邮箱</th>
+												<th>职业</th>
+												<th>最近登录时间</th>
+											</tr>
+										</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="text-center">	
+								<ul id="userInfo-table-paginator"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+	</script>
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	<script type="text/javascript" src="js/fileinput.min.js"></script>
+	<script type="text/javascript" src="js/fileinput_locale_zh.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+	<script src="js/distpicker.data.min.js"></script>
+	<script src="js/distpicker.min.js"></script>
+	<script src="js/back.js"></script>
+	<script src="js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrapValidator.min.js"></script>
+	<script src="js/language/zh_CN.js"></script>
+	<script type='text/javascript'>
+	    function init(){
+	    	$.ajax({
+	    		type:"GET",
+	    		dataType:"json",
+	    		url:"userinfo_getUserInfo",
+	    		success:function(data){
+	    			var userInfo=data.userInfo;
+	    			$("#userName").val(userInfo.userName);
+	    			var sex;
+	    			if(userInfo.sex==true)
+	    			{
+	    				sex="male";
+	    				$("input[name='sex'][value="+sex+"]").attr("checked",true);
+	    			}
+	    			else if(userInfo.sex==false)
+	    			{
+	    				sex="female";
+	    				$("input[name='sex'][value="+sex+"]").attr("checked",true);
+	    			}
+	    			
+	    			if(userInfo.userBirthday!=null){
+	    				$("#date").val(userInfo.userBirthday.split('T')[0]);
+	    			}
+	    			$("input[name='job']").val(userInfo.userJob);
+	    			$("input[name='post']").val(userInfo.post);
+	    			$("textarea[name='introduction']").val(userInfo.userIntroduction);
+	    			$("select[name='province']").val(data.province);
+	    			$("select[name='province']").change();
+	    			$("select[name='city']").val(data.city);
+	    			$("select[name='city']").change();
+	    			$("select[name='area']").val(data.area);
+	    			$("img[name='head-image']").attr("src",userInfo.userImage);
+	    		}
+	    	})
+	    }
+		$('.form_date').datetimepicker({
+        //language:  'fr',
+        format: 'yyyy-mm-dd',
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    	});
+		function getUserInfoTotalPages(){
+				$.ajax({
+					type:"POST",
+					dataType:"json",
+					url:'user/getUserInfoNumber',
+					success:function(data){
+						if(data.totalPages!=0)
+						{
+							var options = {
+								currentPage: 1,
+						        totalPages: data.totalPages,
+						        numberOfPages:8,
+						        bootstrapMajorVersion:3,
+						        useBootstrapTooltip:true,
+						        itemTexts:function(type,page, current){//文字翻译
+						            switch (type) {
+						                case "first":
+						                    return "首页";
+						                case "prev":
+						                    return "上一页";
+						                case "next":
+						                    return "下一页";
+						                case "last":
+						                    return "尾页";
+						                case "page":
+						                    return page;
+						            }
+						        },
+						        onPageClicked: function (event, originalEvent, type, page){
+			                        $.ajax({
+			                        	type: "POST",
+			                        	dataType:"json",  
+			                            url:'user/getUserInfoByPage?Page='+page, //点击分页提交当前页码
+			                            success:function(data){
+		                                  var list = data.userInfoList;
+			                              //DOM操作
+			                              $("#userInfo-table").empty();
+			                              var head='<thead><tr><th>用户</th><th>生日</th><th>微信</th><th>邮箱</th><th>职业</th><th>最近登录时间</th></tr></thead>';
+			                              	$("#userInfo-table").append(head);  
+			                              if (list.length != 0){
+			                              	for(var i=0;i<list.length;i++){
+			                              		var html ='<tr>'+//
+												'<td>'+//
+												list[i].userName+//
+		                                        '</td>'+//
+		                                        '<td>'+//
+		                                        list[i].userBirthday+//
+		                                        '</td>'+//
+		                                        '<td>'+//
+		                                        list[i].wechat+//
+		                                        '</td>'+//
+		                                        '<td>'+//
+		                                        list[i].email+//
+		                                        '</td>'+//
+		                                        '<td>'+//
+		                                        list[i].job+//
+		                                        '</td>'+//
+		                                        '<td>'+//
+		                                        list[i].recentlyTime+//
+		                                        '</td>'+//
+		                                        '</tr>';//
+		                                        $("#userInfo-table").append(html);  
+			                              	}
+			                              }
+		                                  else{  
+		                                        $("#userInfo-table").append('暂无数据！！！');
+		                                    }
+		                                  var tail='</tbody>';
+			                              $("#userInfo-table").append(tail); 
+			                            }
+			                            //success end;
+			                        })
+								}
+						}
+						$('#userInfo-table-paginator').bootstrapPaginator(options);
+						$($('#userInfo-table-paginator').children().get(0)).children().click();	
+					}
+					else 
+					{
+						$("#userInfo-table").empty();
+		                var head='<thead><tr><th>用户</th><th>生日</th><th>微信</th><th>邮箱</th><th>职业</th><th>最近登录时间</th></tr></thead>';
+		                $("#userInfo-table").append(head); 
+		                $("#userInfo-table-paginator").empty();
+
+					}
+				}
+		    })
+		}
+		$(function(){
+			//init();
+			//$("a[name='message']").click(init);
+			//$("a[name='change-password']").click(getNoticerTotalPages);
+			$("a[name='others-message']").click(getUserInfoTotalPages);
+
+			$('#form-2').bootstrapValidator({
+				message: 'This value is not valid',
+				fields:{
+					name:{
+						validators:{
+							notEmpty:{
+								message: '用户名不能为空'
+							}
+						}
+					},
+					post:{
+						validators:{
+							emailAddress:{
+								message:'请输入合法的邮箱格式'
+							}
+						}
+					},
+					date:{
+						validators:{
+							date:{
+								format:'YYYY-MM-DD',
+								mssage:"请输入正确的格式"
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e) {
+					e.preventDefault();
+					alert("验证通过！");
+					$.ajax({
+						type:"GET",
+						url:"userinfo_updateUserInfo",
+						data:$('#form-2').serialize(),
+						success:function(){
+							alert("成功！");
+						}
+					})
+				});
+			$("#hand-in-image").click(function(){
+					$("#form-1").submit();
+					$("#form-2").submit();
+			})
+		});
+				       
+	  </script>
+</body>
+</html>

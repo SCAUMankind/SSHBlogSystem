@@ -1,0 +1,246 @@
+#body {
+    font-size: 14px;
+    background-color: #f5f5f5;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+#header
+{
+        margin-bottom: 0px
+}
+.top-container
+{
+	margin-top:30px;
+}
+.img-avatar
+{
+	width:35px;
+	height:35px;
+	border-radius: 50em;
+}
+.app-header {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+}
+@media (min-width: 992px)
+.hidden-lg-up {
+    display: none !important;
+}
+.navbar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+}
+.navbar-brand {
+    float: left;
+    height: 54px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand {
+    display: inline-block;
+    width: 155px;
+    height: 55px;
+    padding: 0.5rem 1rem;
+    margin-right: 0;
+    background-color: #fff;
+    background-image: url(../image/logo.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50px auto;
+}
+
+.navbar-toggler {
+    align-self: flex-start;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid transparent;
+}
+header.navbar {
+    position: relative;
+    flex-direction: row;
+    height: 55px;
+    padding: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #cfd8dc;
+}
+header.navbar .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+}
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+
+    margin-bottom: 0;
+    list-style: none;
+}
+header.navbar .nav-item {
+    position: relative;
+    min-width: 70px;
+    margin: 0 !important;
+    text-align: center;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+.px-1 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+.ml-auto {
+    margin-left: auto !important;
+}
+.badge-danger {
+    background-color: #f86c6b;
+}
+.badge-pill {
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+header.navbar .nav-item .nav-link .badge, header.navbar .nav-item .dropdown-toggle .badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: 0;
+}
+header .nav>li>a:focus, header .nav>li>a:hover {
+     text-decoration: none; 
+     background-color: #fff; 
+}
+header .navbar-nav>li>a {
+     padding-top: 0px; 
+    padding-bottom: 0px; 
+}
+header a
+{
+	color:#999;
+}
+header.navbar .dropdown-menu {
+    padding-bottom: 0;
+    line-height: 1.5;
+}
+#side 
+{
+    padding-left:0px;
+    padding-right:0px;
+    margin-left:0px;
+    margin-bottom:3rem;
+}
+#side-content
+{
+	padding:2rem 3rem ;
+    background-color: #fff;
+    border: 1px solid #cfd8dc; 
+}
+#side-content-top
+{
+	margin-bottom:4rem;
+}
+#side-content-top .head
+{
+	padding-bottom:4rem;
+	border-bottom: 1px dashed #cfd8dc; 
+}
+#side-content-top ul 
+{
+	list-style:none;
+}
+#side-content-top ul li
+{
+	font-size:14px;
+	padding:0.5rem 0;
+}
+.head-message
+{
+    padding-top:2rem;
+    font-size:12px;
+}
+.side-content
+{
+    margin-top:5rem;
+    padding-left:0px;
+    padding-right:0px;
+    background-color: #fff;
+    border: 1px solid #cfd8dc; 
+}
+.side-content .sidebar-title
+{
+    background-color: #b3dafc;
+    padding:1rem 0;
+    font-size:15px;
+}
+.side-content .sidebar-content>ul
+{
+    list-style:none;
+}
+#right-content
+{
+    margin-left:20px;
+    padding:20px 45px;
+    background-color:#fff;
+}
+#right-part
+{
+}
+#main-content{
+}
+#blog-wrap
+{
+    margin-top:7rem;
+}
+#carousel-780835
+{
+    margin:3rem 0;
+}
+.roll-title
+{
+    padding-bottom :1.5rem;
+    border-bottom: 1px dashed #cfd8dc; 
+}
+.blog
+{
+    margin:3rem 0;
+}
+#label-list,#others-list
+{
+    padding-left:0px;
+}
+#label-list>li,#others-list>li
+{
+    padding:4px;
+    font-size:1.4rem;
+}
+#label-list>li>a,#others-list>li>a
+{
+    color:#534848;
+}
+#big-head-image
+{
+    margin-top:3rem;
+    width:140px;
+    height:140px;
+}

@@ -25,10 +25,10 @@ public class UserInfoDao {
 		return (UserInfo)getSession().get(UserInfo.class, id);
 	}
 	public UserInfo loadUserInfoByUserId(Integer userId) {
-		String hql="from UserInfo u where userId=:userId";
+		String hql="from UserInfo u where u.userId=:userId";
 		Query query=getSession().createQuery(hql);
 		query.setParameter("userId", userId);
-		return (UserInfo)query.list().get(0);
+		return (UserInfo)(query.list().get(0));
 	}
 	public void updateUserInto(UserInfo userInfo) {
 		getSession().update(userInfo);

@@ -1,9 +1,9 @@
 package com.blog.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.blog.beans.User;
 import com.blog.beans.UserInfo;
 import com.blog.common.Constant;
 import com.blog.dao.UserInfoDao;
@@ -68,5 +68,29 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements Us
 			return id;
 		}
 		return 0;
+	}
+	public List<Integer> getUserIdListRandomly(Integer userId){
+		List<UserInfo> userInfoList=userInfoDao.allOtherUserInfo(userId);
+		int size=userInfoList.size();
+		List<Integer> userIdList=new ArrayList<Integer>();
+		if(size<6){//不包括自己在内的5人
+			for(int i=0;i<size;i++){
+				if(userInfoList.get(i).getUserId()!=userId){
+					userIdList.add(userInfoList.get(i).getUserId());
+				}
+			}
+		}else{
+			for(int i=0;i<5;i++){
+				int x=(int)(Math.random()*size);
+				int id=userInfoList.get(x).getUserId();
+				if(id!=userId){
+					userIdList.add(id);
+				}else{
+					i--;
+					continue;
+				}
+			}
+		}
+		return userIdList;
 	}
 }

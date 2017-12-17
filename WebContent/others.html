@@ -63,23 +63,35 @@
 			    		</div>
 			    	</div>
 			    </div>
-					<div id="side-content-middle">
+				<div class="side-content">
 			    		<div class="sidebar-title">
 			    		<span>文章分类</span>
 			    		</div>
 			    		<div class="sidebar-content">
 			    		<ul id="label-list">
-			    			<li><a href="">呵呵(0)</a></li>
-			    			<li><a href="">呵呵(3)</a></li>
-			    			<li><a href="">大神(2)</a></li>
+			    			<li><a href=""></a></li>
+			    			<li><a href=""></a></li>
+			    			<li><a href=""></a></li>
 			    		</ul>
 			    		</div>
-			    	</div>	
+			    </div>	
+			    <div class="side-content">
+			    		<div class="sidebar-title">
+			    		<span>博客推荐</span>
+			    		</div>
+			    		<div class="sidebar-content">
+			    		<ul id="others-list">
+			    			<li><a href=""></a></li>
+			    			<li><a href=""></a></li>
+			    			<li><a href=""></a></li>
+			    		</ul>
+			    		</div>
+			    </div>	
 			    
 			</div>
 			<div class="col-md-8 column " id="right-part">
 				<div id="right-content" class="row">
-					<h3 class="roll-title">每日精彩推荐</h3>		
+					<h3 class="roll-title"></h3>		
 					<div class="carousel slide" id="carousel-780835">
 						<ol class="carousel-indicators">
 							<li data-slide-to="0" data-target="#carousel-780835">
@@ -329,7 +341,7 @@
 					if(size!=null)
 					{
 						$("#label-list").empty();
-						var head='<li><a name="all">全部分类('+blogTotalNum+')</a></li>';
+						var head='<li><a name="all">全部('+blogTotalNum+')</a></li>';
 						$("#label-list").append(head);
 						for(var i=0;i<size;i++)
 						{
@@ -417,6 +429,28 @@
 						})
 						// end click
 					}
+				}
+			})
+			
+			$.ajax({
+				type:"GET",
+				dataType:"json",
+				url:"userinfo_getUserIdListRandomly",
+				success:function(data){
+					$("#others-list").empty();
+					var userNameList=data.userNameList;
+					var userIdList=data.userIdList;
+					var size=userIdList.length;
+					for(var i=0;i<size;i++)
+					{
+						var html='<li><a name="user-'+userIdList[i]+'">'+
+						userNameList[i]+' 的博客'+'</a></li>';
+						$("#others-list").append(html);
+					}
+					//添加js功能
+					$("a[name^='user-']").click(function(){
+						location.href="others.html?userId="+$(this).attr("name").split("-")[1];
+					})
 				}
 			})
 		}

@@ -1,0 +1,106 @@
+img
+{
+	width:auto;
+	height:auto;
+	max-width:100%;
+	max-height:100%;
+}
+body{
+	overflow-y:hidden;
+}
+#page{
+  position:absolute;
+  width:100%;
+}
+.container-content
+{
+	padding-top:60px;
+	color: #fff;
+}
+.overlay
+{
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+.form-wrap {
+    border-top: 10px solid #FBB448;
+    position: relative;
+    width: 100%;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+}
+.form-wrap .tab-content {
+    z-index: 10;
+    position: relative;
+    clear: both;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+.form-wrap label{
+	font-size:15px;
+}
+.form-wrap h3{
+	padding-bottom:20px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #fff !important;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.form-group{
+	padding:3px 0;
+}
+.btn-primary {
+    background: #FBB448;
+    color: #fff;
+    border: 2px solid #FBB448 !important;
+}
+.button-group{
+	margin-top:45px;
+}
+.small-graph{
+	color:#fff;
+	padding:0 40px;
+	font-size:13px;
+}
+.select
+{
+    display: inline;
+    width: 28%;
+    height: 30px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #fff !important;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.select option
+{
+    background-color:#000;
+    color: #fff !important;
+}

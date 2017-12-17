@@ -2,8 +2,10 @@ package com.blog.action;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,6 @@ import com.blog.beans.UserInfo;
 import com.blog.common.Constant;
 import com.blog.service.PlaceService;
 import com.blog.service.UserInfoService;
-import com.blog.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserInfoAction extends ActionSupport{
@@ -124,6 +125,7 @@ public class UserInfoAction extends ActionSupport{
 		}else{//是访客
 			userId=Integer.parseInt(stringUserId);
 		}
+		System.out.println("!!!22222"+userId);
 		UserInfo userInfo=userInfoService.getUserInfoByUserId(userId);
 		if(stringUserId=="null"||stringUserId==null){
 			//是访客的话增加一个PV
@@ -158,6 +160,20 @@ public class UserInfoAction extends ActionSupport{
 		Integer userId=(Integer)session.getAttribute("userId");
 		Integer id=userInfoService.getUserIdRandomly(userId);
 		jsonMap.put("userId", id);
+		return "jsonMap";
+	}
+	public String getUserIdListRandomly(){
+		HttpServletRequest request = ServletActionContext.getRequest(); 
+		HttpSession session = request.getSession();
+		jsonMap = new HashMap<String, Object>(); 
+		Integer userId=(Integer)session.getAttribute("userId");
+		List<Integer> userIdList=userInfoService.getUserIdListRandomly(userId);
+		List<String> userNameList=new ArrayList<String>();
+		for(int i=0;i<userIdList.size();i++){
+			userNameList.add(userInfoService.getUserInfoByUserId(userIdList.get(i)).getUserName());
+		}	
+		jsonMap.put("userIdList", userIdList);
+		jsonMap.put("userNameList", userNameList);
 		return "jsonMap";
 	}
 }

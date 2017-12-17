@@ -11,4 +11,5 @@ public interface BlogService extends BaseService<Blog>{
 	public Integer getBlogId(Integer userId,String title);
 	public Integer getTotalNum(Integer userId);
 	public List<Blog> getBlogTop10(Integer userId);
+	public void updateBlog(Integer blogId,String title,String text);
 }

@@ -1,0 +1,19 @@
+#blog-title
+{
+	height:30px;
+}
+#reset
+{
+	width:100%;
+}
+#create-blog,#classify,#modify-blog
+{
+	padding-top:35px;
+}
+select{
+	width:50%;
+}
+#publish,#reset
+{
+	width:100%;
+}

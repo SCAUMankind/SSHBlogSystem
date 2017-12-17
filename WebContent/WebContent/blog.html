@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基于SSH的个人博客系统</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/manager.css">
+    <link rel="stylesheet" href="css/personal-message.css">
+    <link href="css/multiple-select.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" type="text/css" href="css/xcConfirm.css"/>
+</head>
+
+<body id="body">
+	<header class="app-header navbar" id="header">
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav navbar-nav hidden-md-down">
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+            </li>
+
+            <li class="nav-item px-1">
+                <a class="nav-link" href="main.html">首页</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="blog.html">博客管理</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="nav-link" href="#" name="randomGo">随便逛逛</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link"  href="manager.html" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img name="head-image" src="" class="img-avatar" alt="admin@bootstrapmaster.com">
+                    <span >admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler aside-menu-toggler" href="index.html">退出</a>
+            </li>
+
+        </ul>
+    </header>
+	
+    <div class="container" id="content-wrap">
+		<div class="row clearfix" id="content">
+			<div class="col-md-3 column "  id="content-left">
+				<div class="panel-group" id="panel-800988">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-1">个人信息</a>
+						</div>
+						<div id="panel-element-1" class="panel-collapse collapse ">
+							<div class="panel-body">
+								<ul>
+								 	<li><a href="#" class="1">个人信息</a></li>
+								 	<li><a href="#" class="2">我的关注</a></li>
+								 	<li><a href="#" class="3"">我的粉丝</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-2">博客管理</a>
+						</div>
+						<div id="panel-element-2" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<ul>
+								 	<li >
+										 <a href="#" class="1" name="create-blog">发表文章</a>
+									</li>
+									<li>
+										 <a href="#" class="2" name="modify-blog">博客编辑</a>
+									</li>
+									<!--<li>
+										 <a href="#" class="3" name="classify-blog">博客分类</a>
+									</li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							 <a class="panel-title" data-toggle="collapse" data-parent="#panel-800988" href="#panel-element-3">标签管理</a>
+						</div>
+						<div id="panel-element-3" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul>
+								 	<li><a href="#" class="1">新的标签</a></li>
+								 	<li><a href="#" class="2">标签编辑</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 column " id="content-right">
+				<div class="tabbable" id="tabs-948784">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							 <a href="#panel-1" data-toggle="tab" name="create-blog">发表文章</a>
+						</li>
+						<li>
+							 <a href="#panel-2" data-toggle="tab" name="modify-blog">博客编辑</a>
+						</li>
+						<!--<li>
+							 <a href="#panel-3" data-toggle="tab" name="classify-blog">博客分类</a>
+						</li>-->
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-1">
+							<div id="create-blog">
+								<form id="create-blog-form" action="#" class="form-horizontal">
+									<div class="row form-group">
+										<label for="name" class="control-label col-md-1">标&ensp;题</label>
+										<div class="col-md-5 ">
+											<input type="text"  class="form-control"  placeholder="请输入博客标题" id="blog-title" name="blog-title">
+										</div>
+									</div>
+									<div class="row form-group">
+										<label for="label" class="control-label col-md-1">标&ensp;签</label>
+										<div class="col-md-5 ">
+											<select class="ms" multiple="multiple" name="label" id="multiple-label">
+												<option value="1">January</option>
+												<option value="2">February</option>
+												<option value="3">March</option>
+												<option value="4">April</option>
+												<option value="5">May</option>
+												<option value="6">June</option>
+												<option value="7">July</option>
+												<option value="8">August</option>
+												<option value="9">September</option>
+												<option value="10">October</option>
+												<option value="11">November</option>
+												<option value="12">December</option>
+											 </select>
+										</div>
+										
+									</div>
+									<div class="row form-group">
+										<label for="username" class="control-label col-md-1">正文</label>
+										<div class="col-md-10">
+											<textarea class="form-control" rows="10"
+											placeholder="请输入正文……" name="text" id="blog-text"></textarea>
+										</div>	
+										<input type="hidden" name="blogId" value="">
+									</div>
+
+									<div class="row form-group button-group">
+										<div class="col-md-5 col-md-push-1">
+											<button type="button" class="btn btn-warning btn-default" id="publish">发布</button>
+										</div>
+										<div class="col-md-5 col-md-push-1">
+												<button type="button" class="btn btn-warning btn-default" id="reset">重置</button>
+										</div>
+									</div>
+								</form>	
+							</div>
+						</div>
+						<div class="tab-pane" id="panel-2">
+							<div id="modify-blog">
+								<div class="row clearfix">
+									<div class="col-md-12 column">
+										<table id="modify-blog-table" class="table table-striped table-condensed">
+											<colgroup>
+												<col style="width:30%">
+		                              			<col style="width:20%">
+		                              			<col style>
+		                              		</colgroup>
+		                              	<thead>
+		                              		<tr>
+		                              			<th>博客标题</th>
+		                              			<th>发布时间</th>
+		                              			<th>选择分类</th>
+		                              		</tr>
+		                              	</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="text-center">
+								<ul id="modify-blog-paginator"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/multiple-select.js"></script>
+	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	<script src="js/back.js"></script>
+	<script src="js/jquery-confirm.min.js"></script>
+	<script src="js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	var modify_bolg_id=0;
+	$("a[name='randomGo']").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"userinfo_getUserIdRandomly",
+				dataType:"json",
+				success:function(data){
+					if(data.userId==0){
+						location.href=location.href;
+					}else{
+						location.href="others.html?userId="+data.userId;
+					}
+				}
+			})
+		})
+	function init(){
+	    	$.ajax({
+	    		type:"GET",
+	    		dataType:"json",
+	    		url:"userinfo_getUserInfo",
+	    		success:function(data){
+	    			var userInfo=data.userInfo;
+	    			$("img[name='head-image']").attr("src",userInfo.userImage);
+	    		}
+	    	})
+	    }
+	function getModifyBlogTotalPages(){
+				$.ajax({
+					type:"GET",
+					dataType:"json",
+					url:'blog_getModifyTotalPages',
+					success:function(data){
+						var options = {
+							currentPage: 1,
+					        totalPages: data.totalPages,
+					        numberOfPages:6,
+					        bootstrapMajorVersion:3,
+					        useBootstrapTooltip:true,
+					        itemTexts:function(type,page, current){//文字翻译
+					            switch (type) {
+					                case "first":
+					                    return "首页";
+					                case "prev":
+					                    return "上一页";
+					                case "next":
+					                    return "下一页";
+					                case "last":
+					                    return "尾页";
+					                case "page":
+					                    return page;
+					            }
+					        },
+					        onPageClicked: function (event, originalEvent, type, page) {
+		                        $.ajax({
+		                        	type: "GET",
+		                        	dataType:"json",  
+		                            url:'blog_getModifyBlog?Page='+page, //点击分页提交当前页码
+		                            success:function(data){
+		                              $("#modify-blog-table").empty();
+	                                  var size = data.showSize;  
+	                                  var list = data.blogList;  
+		                              //DOM操作
+		                              if (size != null){
+		                              	var head='<thead><tr><th>博客标题</th><th>发布时间'+
+		                              	'</th><th>操作</th></tr></thead><tbody>';
+		                              	$("#modify-blog-table").append(head); 
+		                              	for(var i=0;i<list.length;i++){
+		                              		var html ='<tr>'+//
+											'<td>'+//
+	                                        '<span>'+list[i].title+'</span>'+//
+	                                        '</td>'+//
+	                                        '<td>'+list[i].date.split('T')[0]+'</td>'+//
+	                                        '<td>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default read-blog" name="blog-'+//
+	                                        list[i].blogId+'">查看博客'+//
+	                                        '</button>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default delete-blog" name="blog-'+list[i].blogId+'">删除博客'+//
+	                                        '</button>'+//
+	                                        '<button type="button" class='+//
+	                                        '"btn btn-warning btn-default modify-blog"  name="blog-'+list[i].blogId+'">编辑博客'+//
+	                                        '</button>'+//
+	                                        '</td>'+//
+	                                        '</tr>';//
+	                                        $("#modify-blog-table").append(html);  
+		                              	}
+		                              	var tail='</tbody>';
+		                              	$("#modify-blog-table").append(tail); 
+		                              	//查看博客js
+		                              	$(".read-blog").click(function(){
+		                              		var blogId =$(this).attr("name").split('-')[1];
+		                              		location.href="article.html?blogId="+blogId;
+		                              	})
+		                              	//删除博客js
+		                              	$(".delete-blog").click(function(){
+		                              		var txt=  "是否确认删除博客:"+$(this).parent().prev().prev().children().eq(0).text();
+		                              		var blogId =$(this).attr("name").split('-')[1];
+											window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning,{
+												onOk:function(){
+													$.ajax({
+														type:'GET',
+														url:'blog_deleteBlog?blogId='+blogId,
+														success:function(){
+															var txt=  "删除成功！";
+															window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+															$("a[name='modify-blog'][class='2']").click();
+														}
+													})
+												}
+											});
+		                              	})
+		                              	//编辑博客js
+		                              	$(".modify-blog").click(function(){
+		                              		$("a[name='create-blog'][class='1']").click();
+		                              		var blogId =$(this).attr("name").split('-')[1];
+		                              		$("input[name='blogId']").val(blogId);
+		                              		$.ajax({
+		                              			type:'GET',
+		                              			dataType:"json",
+		                              			url:"blog_loadBlog?blogId="+blogId,
+		                              			success:function(data){
+		                              				var blog=data.blog;
+		                              				$("#blog-title").val(blog.title);
+		                              				$("#blog-text").val(blog.text);
+		                              			}
+		                              		})
+		                              		$.ajax({
+												type:"GET",
+												dataType:"json",
+												url:'label_getLabelListByBlogId?blogId='+blogId,
+												success:function(data){
+													var labelList=data.labelList;
+													var arr=[];
+													for(var i=0;i<labelList.length;i++)
+													{
+														arr.push(labelList[i].labelId);
+													}
+													$('#multiple-label').multipleSelect('setSelects', arr);
+												}
+											})
+		                              	})
+		                              }
+	                                  else{  
+	                                        $("#modify-blog-table").append('没有找到相应数据');
+	                                    } 
+		                            }
+		                        })
+						}
+					}
+					$('#classify-paginator').bootstrapPaginator(options);
+					$('#modify-blog-paginator').bootstrapPaginator(options);
+					$($('#modify-blog-paginator').children().get(0)).children().click();
+					//模拟一次点击事件
+				}
+		    })
+		}
+	function getMultipleLabels(){
+				//顺便初始化
+				$("#blog-title").val('');
+		        $("#blog-text").val('');
+		        $("input[name='blogId']").val("");
+				$.ajax({
+					type:"GET",
+					dataType:"json",
+					url:'label_getMultipleLabels',
+					success:function(data){
+						var labelList=data.labelList;
+						var size=data.size;
+						$("#multiple-label").empty();
+						if(size!=null)
+						{
+							for(i=0;i<size;i++)
+							{
+								var html='<option value="'+labelList[i].labelId+'">'+labelList[i].labelTitle+'</option>';
+								$("#multiple-label").append(html);
+							}
+						}
+						$("#multiple-label").multipleSelect('refresh');
+					}
+		    	})
+		}
+    $(function() {
+    	init();
+        $("a[name='modify-blog']").click(getModifyBlogTotalPages);
+		$("a[name='create-blog']").click(getMultipleLabels);
+		$("a[name='create-blog']").click();//模拟一次点击事件触发select的更改
+		$('select').multipleSelect('refresh');
+		$("#publish").confirm({
+		    title: '发表文章',
+		    content: '是否确认发表该文章？',
+		    confirm: function(){
+			    $.ajax({
+	                cache: true,
+	                type: "POST",
+	                url:'blog_createBlog',
+	                data:$('#create-blog-form').serialize(),// 你的form—id
+	                async: false,
+	                error: function(request) {
+	                    alert("Connection error");
+	                },
+	                success: function(data) {
+						$("input[name='blogId']").val("");
+	                    var txt=  "发布成功！";
+						window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+						$('#create-blog-form input').val('');
+				        $("#multiple-label").multipleSelect('setSelects', '');
+				        $('#create-blog-form textarea').val('');
+	                }
+	            });
+		    }
+		});
+		$("#reset").confirm({
+		    title: '发表文章',
+		    content: '是否确认重置所写内容？',
+		    confirm: function(){
+		        $('#create-blog-form input').val('');
+		        $("#multiple-label").multipleSelect('setSelects', '');
+		        $('#create-blog-form textarea').val('');
+		    }
+		});
+    });
+	</script>
+</body>
+</html>

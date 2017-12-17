@@ -22,6 +22,7 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
 	}
 	@Override
 	public Integer getTotalPages(Integer userId,Integer size) {
+		//blogDao=new BlogDao();
 		if(blogDao.getTotalNum(userId)==0)return 0;
 		return (blogDao.getTotalNum(userId)-1)/size+1;
 	}
@@ -31,7 +32,14 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements BlogServic
 		blog.setText(text);
 		blog.setTitle(title);
 		blog.setDate(new Date());
+		blog.setBlogPV(0);
 		save(blog);
+	}
+	public void updateBlog(Integer blogId,String title,String text){
+		Blog blog=get(blogId);
+		blog.setText(text);
+		blog.setTitle(title);
+		update(blog);
 	}
 	public Integer getBlogId(Integer userId,String title){
 		return blogDao.getBlogIdByTitle(userId, title);

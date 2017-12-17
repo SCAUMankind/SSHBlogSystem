@@ -179,7 +179,7 @@ header.navbar .dropdown-menu {
     padding-top:2rem;
     font-size:12px;
 }
-#side-content-middle
+.side-content
 {
     margin-top:5rem;
     padding-left:0px;
@@ -187,13 +187,13 @@ header.navbar .dropdown-menu {
     background-color: #fff;
     border: 1px solid #cfd8dc; 
 }
-#side-content-middle .sidebar-title
+.side-content .sidebar-title
 {
     background-color: #b3dafc;
     padding:1rem 0;
     font-size:15px;
 }
-#side-content-middle .sidebar-content>ul
+.side-content .sidebar-content>ul
 {
     list-style:none;
 }
@@ -225,16 +225,16 @@ header.navbar .dropdown-menu {
 {
     margin:3rem 0;
 }
-#label-list
+#label-list,#others-list
 {
     padding-left:0px;
 }
-#label-list>li
+#label-list>li,#others-list>li
 {
     padding:4px;
     font-size:1.4rem;
 }
-#label-list>li>a
+#label-list>li>a,#others-list>li>a
 {
     color:#534848;
 }

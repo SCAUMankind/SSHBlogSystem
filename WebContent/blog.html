@@ -151,7 +151,9 @@
 											<textarea class="form-control" rows="10"
 											placeholder="请输入正文……" name="text" id="blog-text"></textarea>
 										</div>	
+										<input type="hidden" name="blogId" value="">
 									</div>
+
 									<div class="row form-group button-group">
 										<div class="col-md-5 col-md-push-1">
 											<button type="button" class="btn btn-warning btn-default" id="publish">发布</button>
@@ -202,6 +204,7 @@
 	<script src="js/jquery-confirm.min.js"></script>
 	<script src="js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
 	<script>
+	var modify_bolg_id=0;
 	$("a[name='randomGo']").click(function(){
 			$.ajax({
 				type:"GET",
@@ -317,6 +320,7 @@
 		                              	$(".modify-blog").click(function(){
 		                              		$("a[name='create-blog'][class='1']").click();
 		                              		var blogId =$(this).attr("name").split('-')[1];
+		                              		$("input[name='blogId']").val(blogId);
 		                              		$.ajax({
 		                              			type:'GET',
 		                              			dataType:"json",
@@ -338,7 +342,6 @@
 													{
 														arr.push(labelList[i].labelId);
 													}
-													alert(arr);
 													$('#multiple-label').multipleSelect('setSelects', arr);
 												}
 											})
@@ -362,6 +365,7 @@
 				//顺便初始化
 				$("#blog-title").val('');
 		        $("#blog-text").val('');
+		        $("input[name='blogId']").val("");
 				$.ajax({
 					type:"GET",
 					dataType:"json",
@@ -380,7 +384,7 @@
 						}
 						$("#multiple-label").multipleSelect('refresh');
 					}
-		    })
+		    	})
 		}
     $(function() {
     	init();
@@ -402,6 +406,7 @@
 	                    alert("Connection error");
 	                },
 	                success: function(data) {
+						$("input[name='blogId']").val("");
 	                    var txt=  "发布成功！";
 						window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
 						$('#create-blog-form input').val('');

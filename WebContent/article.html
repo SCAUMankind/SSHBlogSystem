@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="css/comment.css"/>
 </head>
 <body id="body">
-	<header class="app-header navbar" id="header">a
+	<header class="app-header navbar" id="header">
         <a class="navbar-brand" href="#"></a>
         <ul class="nav navbar-nav hidden-md-down">
             <li class="nav-item">
@@ -66,7 +66,7 @@
 			    		</div>
 			    	</div>
 			    </div>
-					<div id="side-content-middle">
+					<div class="side-content">
 			    		<div class="sidebar-title">
 			    		<span>文章排行Top10</span>
 			    		</div>
@@ -349,7 +349,6 @@
 								var time=data.userInfo.userRecentLoginTime;
 								var PV=data.userInfo.userPV;
 								$("#userName").text(userName);
-								$("#Name").text(userName);
 								$("img[name='head-image']").attr("src",imageURL);
 								$("#recentLogin").text(time);
 								$("#PV").text(PV);
@@ -361,7 +360,9 @@
 							url:'userinfo_getUserInfo',
 							success:function(data){
 								var imageURL=data.userInfo.userImage;
+								var name=data.userInfo.userName;
 								$("img[name='personal-head-image']").attr("src",imageURL);
+								$("#Name").text(name);
 							}
 						})
 						//获取粉丝数和关注数

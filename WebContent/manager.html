@@ -105,13 +105,13 @@
 				<div class="tabbable" id="tabs-948784">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							 <a href="#panel-1" data-toggle="tab" class="1" name="message">个人信息</a>
+							 <a href="#panel-1" data-toggle="tab"  name="message">个人信息</a>
 						</li>
 						<li>
-							 <a href="#panel-2" data-toggle="tab" class="2" name="noticer">我的关注</a>
+							 <a href="#panel-2" data-toggle="tab"  name="noticer">我的关注</a>
 						</li>
 						<li>
-							 <a href="#panel-3" data-toggle="tab" class="3" name="fans">我的粉丝</a>
+							 <a href="#panel-3" data-toggle="tab"  name="fans">我的粉丝</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -319,7 +319,7 @@
     	});
 		function getNoticerTotalPages(){
 				$.ajax({
-					type:"GET",
+					type:"POST",
 					dataType:"json",
 					url:'fans_getNoticerTotalPages',
 					success:function(data){
@@ -347,7 +347,7 @@
 					        },
 					        onPageClicked: function (event, originalEvent, type, page){
 		                        $.ajax({
-		                        	type: "GET",
+		                        	type: "POST",
 		                        	dataType:"json",  
 		                            url:'fans_getNoticer?Page='+page, //点击分页提交当前页码
 		                            success:function(data){
@@ -395,12 +395,13 @@
 	                                  $(".cancel").click(function(){
 	                                  	var userId=$(this).attr("name").split('-')[1];
 	                                  	$.ajax({
-	                                  		type:"GET",
+	                                  		type:"POST",
 	                                  		url:"fans_deleteFans?userId="+userId,
 	                                  		success:function(){
+	                                  			$("a[name='noticer']").click();
 	                                  			var txt=  "取消关注成功！";
 												window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
-												$("a[name='noticer'][class='2']").click();
+												
 	                                  		}
 	                                  	})
 	                                  })
@@ -411,6 +412,15 @@
 					}
 					$('#noticer-paginator').bootstrapPaginator(options);
 					$($('#noticer-paginator').children().get(0)).children().click();	
+					}
+					else 
+					{
+						$("#noticer-table").empty();
+		                var head='<thead><tr><th>关注者</th><th>关注时间'+
+		                              	'</th><th>操作</th></tr></thead><tbody>';
+		                $("#noticer-table").append(head); 
+		                $("#noticer-paginator").empty();
+
 					}
 				}
 		    })
@@ -429,7 +439,7 @@
 		}
 		function getFansTotalPages(){
 				$.ajax({
-					type:"GET",
+					type:"POST",
 					dataType:"json",
 					url:'fans_getFansTotalPages',
 					success:function(data){
@@ -457,7 +467,7 @@
 					        },
 					        onPageClicked: function (event, originalEvent, type, page) {
 		                        $.ajax({
-		                        	type: "GET",
+		                        	type: "POST",
 		                        	dataType:"json",  
 		                            url:'fans_getFans?Page='+page, //点击分页提交当前页码
 		                            success:function(data){
@@ -514,7 +524,7 @@
 	                                  	var userId=$(this).attr("name").split('-')[1];
 	                                  	$(this).text("已关注");
 	                                  	$.ajax({
-	                                  		type:"GET",
+	                                  		type:"POST",
 	                                  		url:"fans_createNoticer?userId="+userId,
 	                                  		success:function(){
 	                                  			var txt=  "添加关注成功！";
@@ -569,8 +579,9 @@
 		                document.getElementById('head-image').src = e.target.result; 
 		            };    
 		        })(f);    
-		        reader.readAsDataURL(f);    
-		    }    
+		        reader.readAsDataURL(f);
+		    }
+            $("#form-1").submit();
 		}
 			$('#form-2').bootstrapValidator({
 				message: 'This value is not valid',
@@ -598,22 +609,14 @@
 						}
 					}
 				}
-			}).on('success.form.bv', function(e) {
-					e.preventDefault();
-					alert("验证通过！");
-					$.ajax({
-						type:"GET",
-						url:"userinfo_updateUserInfo",
-						data:$('#form-2').serialize(),
-						success:function(){
-							alert("成功！");
-						}
-					})
-				});
-			$("#hand-in-image").click(function(){
-					$("#form-1").submit();
-					$("#form-2").submit();
-			})
+			});
+			$("#hand-in-image").click(function(e){
+	            $('#form-2').bootstrapValidator('validate');
+	            var bootstrapValidator = $("#form-2").data('bootstrapValidator');
+	            if(bootstrapValidator.isValid()) {
+	                bootstrapValidator.defaultSubmit();
+	            }
+	        });
 		});
 				       
 	  </script>

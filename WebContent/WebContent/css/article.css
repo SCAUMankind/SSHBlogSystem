@@ -1,0 +1,43 @@
+.media-list img
+{
+	height:40px;
+	width:40px;
+}
+.critical
+{
+	margin-top:10rem;
+	padding-bottom:1.5rem;
+	border-bottom:1px dashed #928c8c;
+	margin-bottom:3rem;
+}
+#comment
+{
+	margin-bottom:10rem;
+}
+#comment-input
+{
+	border-top:0.5px dashed #928c8c;
+}
+#comment .media
+{
+	margin:2rem 0;
+}
+#big-head-image
+{
+    margin-top:3rem;
+    width:140px;
+    height:140px;
+}
+#rank
+{
+    padding-left:0px;
+}
+#rank>li
+{
+    padding:4px;
+    font-size:1.4rem;
+}
+#rank>li>a
+{
+    color:#534848;
+}
